@@ -20,6 +20,7 @@
 #include "PlayerMappableInputConfig.h"
 #include "Camera/LyraCameraMode.h"
 #include "Camera/LyraCameraMode_FirstPerson.h"
+#include "GameplayTagContainer.h"
 #include "UserSettings/EnhancedInputUserSettings.h"
 #include "InputMappingContext.h"
 #include "InputCoreTypes.h"
@@ -48,6 +49,12 @@ ULyraHeroComponent::ULyraHeroComponent(const FObjectInitializer& ObjectInitializ
 	FirstPersonCameraModeClass = ULyraCameraMode_FirstPerson::StaticClass();
 	FirstPersonADSModeClass = ULyraCameraMode_FirstPersonADS::StaticClass();
 	bInFirstPersonMode = true;
+
+	static ConstructorHelpers::FClassFinder<ULyraCameraMode> ThirdPersonFinder(TEXT("/Game/Characters/Cameras/CM_ThirdPerson"));
+	if (ThirdPersonFinder.Succeeded())
+	{
+		ThirdPersonCameraModeClass = ThirdPersonFinder.Class;
+	}
 }
 
 void ULyraHeroComponent::OnRegister()
@@ -168,6 +175,13 @@ void ULyraHeroComponent::HandleChangeInitState(UGameFrameworkComponentManager* M
 			// The player state holds the persistent data for this player (state that persists across deaths and multiple pawns).
 			// The ability system component and attribute sets live on the player state.
 			PawnExtComp->InitializeAbilitySystem(LyraPS->GetLyraAbilitySystemComponent(), LyraPS);
+
+			// Fresh pawn (spawn or respawn): release a possibly stuck ADS input so a
+			// death held mid-aim can't leave aim-down-sights active forever.
+			if (ULyraAbilitySystemComponent* FreshASC = PawnExtComp->GetLyraAbilitySystemComponent())
+			{
+				FreshASC->AbilityInputTagReleased(FGameplayTag::RequestGameplayTag(TEXT("InputTag.Weapon.ADS")));
+			}
 		}
 
 		if (ALyraPlayerController* LyraPC = GetController<ALyraPlayerController>())
@@ -506,11 +520,22 @@ TSubclassOf<ULyraCameraMode> ULyraHeroComponent::DetermineCameraMode() const
 	{
 		if (const ULyraPawnData* PawnData = PawnExtComp->GetPawnData<ULyraPawnData>())
 		{
-			return PawnData->DefaultCameraMode;
+			// FP-only pawn data points its default back at first person, which
+			// would make the V toggle a silent no-op, so prefer the concrete
+			// stock third-person camera instead.
+			if (PawnData->DefaultCameraMode && !PawnData->DefaultCameraMode->IsChildOf(ULyraCameraMode_FirstPerson::StaticClass()))
+			{
+				return PawnData->DefaultCameraMode;
+			}
 		}
 	}
 
-	return nullptr;
+	if (ThirdPersonCameraModeClass)
+	{
+		return ThirdPersonCameraModeClass;
+	}
+
+	return FirstPersonCameraModeClass;
 }
 
 void ULyraHeroComponent::ToggleCameraMode()

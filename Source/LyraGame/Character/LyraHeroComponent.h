@@ -117,6 +117,12 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Lyra|Hero")
 	TSubclassOf<ULyraCameraMode> FirstPersonADSModeClass;
 
+	// Stock third-person camera used when V toggles out of first person and
+	// the pawn data default also points at first person. Must be a concrete
+	// Blueprint (the C++ ThirdPerson base is abstract and can't spawn).
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Lyra|Hero")
+	TSubclassOf<ULyraCameraMode> ThirdPersonCameraModeClass;
+
 	/** If true, the camera defaults to first person mode (toggle with V) */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Lyra|Hero")
 	bool bInFirstPersonMode = true;

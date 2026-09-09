@@ -5,6 +5,8 @@
 #include "LyraCameraMode.h"
 #include "LyraCameraMode_FirstPerson.generated.h"
 
+class UUserWidget;
+
 /**
  * ULyraCameraMode_FirstPerson
  *
@@ -24,6 +26,7 @@ public:
 
 protected:
 
+	virtual void OnActivation() override;
 	virtual void UpdateView(float DeltaTime) override;
 
 protected:
@@ -56,4 +59,35 @@ class ULyraCameraMode_FirstPersonADS : public ULyraCameraMode_FirstPerson
 public:
 
 	ULyraCameraMode_FirstPersonADS();
+
+protected:
+
+	virtual void UpdateView(float DeltaTime) override;
+	virtual void OnActivation() override;
+	virtual void OnDeactivation() override;
+
+	// Shows/hides the ADS crosshair overlay.
+	void SetADSCrosshairVisible(bool bVisible) const;
+	// Hides the owner's body + held weapon (owner-only, others still see you).
+	void SetADSFirstPersonMeshesHidden(bool bHidden);
+
+protected:
+
+	// Crosshair overlay widget shown while aiming.
+	UPROPERTY(EditDefaultsOnly, Category = "First Person ADS")
+	TSubclassOf<UUserWidget> CrosshairWidgetClass;
+
+private:
+
+	// Original OwnerNoSee each mesh had before ADS hid it, so ADS exit
+	// restores the authored state instead of forcing everything visible
+	// (Lyra intentionally keeps some meshes owner-hidden).
+	struct FADSMeshRestoreState
+	{
+		bool bOwnerNoSee = false;
+	};
+	TMap<TWeakObjectPtr<class UMeshComponent>, FADSMeshRestoreState> ADSRestoreStates;
+	// Original owners of attached actors we re-owned to the pawn (lets
+	// OwnerNoSee reach ownerless cosmetic parts without touching HiddenInGame).
+	TMap<TWeakObjectPtr<AActor>, TWeakObjectPtr<AActor>> ADSRestoreOwners;
 };

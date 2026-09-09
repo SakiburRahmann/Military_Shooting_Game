@@ -23,6 +23,7 @@
 #include "UserSettings/EnhancedInputUserSettings.h"
 #include "InputMappingContext.h"
 #include "InputCoreTypes.h"
+#include "GameFramework/Character.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(LyraHeroComponent)
 
@@ -45,7 +46,8 @@ ULyraHeroComponent::ULyraHeroComponent(const FObjectInitializer& ObjectInitializ
 	AbilityCameraMode = nullptr;
 	bReadyToBindInputs = false;
 	FirstPersonCameraModeClass = ULyraCameraMode_FirstPerson::StaticClass();
-	bInFirstPersonMode = false;
+	FirstPersonADSModeClass = ULyraCameraMode_FirstPersonADS::StaticClass();
+	bInFirstPersonMode = true;
 }
 
 void ULyraHeroComponent::OnRegister()
@@ -479,6 +481,13 @@ TSubclassOf<ULyraCameraMode> ULyraHeroComponent::DetermineCameraMode() const
 {
 	if (AbilityCameraMode)
 	{
+		// While in first person, any non-FP ability camera (e.g. the ADS zoom)
+		// stays first person instead of yanking the view over the shoulder.
+		const bool bAbilityCamIsFP = AbilityCameraMode->IsChildOf(ULyraCameraMode_FirstPerson::StaticClass());
+		if (bInFirstPersonMode && !bAbilityCamIsFP && FirstPersonADSModeClass)
+		{
+			return FirstPersonADSModeClass;
+		}
 		return AbilityCameraMode;
 	}
 

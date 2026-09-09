@@ -47,6 +47,14 @@ public:
 	/** Clears the camera override if it is set */
 	UE_API void ClearAbilityCameraMode(const FGameplayAbilitySpecHandle& OwningSpecHandle);
 
+	/** Toggle between first person and third person camera modes */
+	UFUNCTION(BlueprintCallable, Category = "Lyra|Hero")
+	UE_API void ToggleCameraMode();
+
+	/** Returns true if currently in first person mode */
+	UFUNCTION(BlueprintPure, Category = "Lyra|Hero")
+	bool IsInFirstPersonMode() const { return bInFirstPersonMode; }
+
 	/** Adds mode-specific input config */
 	UE_API void AddAdditionalInputConfig(const ULyraInputConfig* InputConfig);
 
@@ -89,15 +97,6 @@ protected:
 
 	UE_API TSubclassOf<ULyraCameraMode> DetermineCameraMode() const;
 
-public:
-	/** Toggle between first person and third person camera modes */
-	UFUNCTION(BlueprintCallable, Category = "Lyra|Hero")
-	UE_API void ToggleCameraMode();
-
-	/** Returns true if currently in first person mode */
-	UFUNCTION(BlueprintPure, Category = "Lyra|Hero")
-	bool IsInFirstPersonMode() const { return bInFirstPersonMode; }
-
 protected:
 	
 	UPROPERTY(EditAnywhere)
@@ -114,9 +113,13 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Lyra|Hero")
 	TSubclassOf<ULyraCameraMode> FirstPersonCameraModeClass;
 
-	/** If true, the camera is currently forced into first person mode */
-	UPROPERTY(BlueprintReadOnly, Category = "Lyra|Hero")
-	bool bInFirstPersonMode;
+	/** ADS camera used while in first person (mirrors the third person ADS mode) */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Lyra|Hero")
+	TSubclassOf<ULyraCameraMode> FirstPersonADSModeClass;
+
+	/** If true, the camera defaults to first person mode (toggle with V) */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Lyra|Hero")
+	bool bInFirstPersonMode = true;
 
 	/** True when player input bindings have been applied, will never be true for non - players */
 	bool bReadyToBindInputs;

@@ -521,9 +521,9 @@ void ULyraHeroComponent::ToggleCameraMode()
 	{
 		if (ACharacter* Character = Cast<ACharacter>(Pawn))
 		{
-			// In First Person, the character must rotate to match the controller's Yaw.
-			// In Third Person, the character rotates based on movement/strafing.
-			Character->bUseControllerRotationYaw = bInFirstPersonMode;
+			// Shooter style in both views: the body always faces the camera so
+			// strafing plays strafe locomotion instead of turning the whole body.
+			Character->bUseControllerRotationYaw = true;
 		}
 	}
 }

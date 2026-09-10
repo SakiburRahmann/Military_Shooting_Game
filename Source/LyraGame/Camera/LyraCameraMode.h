@@ -129,14 +129,6 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "View", Meta = (UIMin = "-89.9", UIMax = "89.9", ClampMin = "-89.9", ClampMax = "89.9"))
 	float ViewPitchMax;
 
-	// If true, the camera will be strictly attached to the head socket of the character.
-	UPROPERTY(EditDefaultsOnly, Category = "View")
-	bool bUseFirstPersonCamera;
-
-	// Checks if this camera mode should act as a first person camera.
-	// This will return true if bUseFirstPersonCamera is true, or if the HeroComponent is in first person mode.
-	bool ShouldUseFirstPersonCamera() const;
-
 	// How long it takes to blend in this mode.
 	UPROPERTY(EditDefaultsOnly, Category = "Blending")
 	float BlendTime;

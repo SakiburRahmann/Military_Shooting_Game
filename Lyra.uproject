@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "5.7",
+	"EngineAssociation": "5.8",
 	"Category": "Samples",
 	"Description": "",
 	"Modules": [
@@ -42,6 +42,10 @@
 		},
 		{
 			"Name": "CommonLoadingScreen",
+			"Enabled": true
+		},
+		{
+			"Name": "CommonStartupLoadingScreen",
 			"Enabled": true
 		},
 		{
@@ -184,9 +188,7 @@
 				"WinGDK"
 			],
 			"SupportedTargetPlatforms": [
-				"XB1",
-				"XSX",
-				"WinGDK"
+				"Win64"
 			]
 		},
 		{
@@ -341,6 +343,47 @@
 		},
 		{
 			"Name": "Reflex",
+			"Enabled": true
+		},
+		{
+			"Name": "XInputDevice",
+			"Enabled": true,
+			"SupportedTargetPlatforms": [
+				"Win64"
+			]
+		},
+		{
+			"Name": "GameInputWindows",
+			"Enabled": true,
+			"SupportedTargetPlatforms": [
+				"Win64"
+			]
+		},
+		{
+			"Name": "AIAssistant",
+			"Enabled": true
+		},
+		{
+			"Name": "ToolsetRegistry",
+			"Enabled": true
+		},
+		{
+			"Name": "AllToolsets",
+			"Enabled": true
+		},
+		{
+			"Name": "PlayerInputDebugger",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name": "PlatformDLC",
+			"Enabled": true
+		},
+		{
+			"Name": "ModelContextProtocol",
 			"Enabled": true
 		}
 	],

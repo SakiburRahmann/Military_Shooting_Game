@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Game\n"
-"POT-Creation-Date: 2025-07-31 05:24\n"
-"PO-Revision-Date: 2025-07-31 05:24\n"
+"POT-Creation-Date: 2026-03-03 06:30\n"
+"PO-Revision-Date: 2026-03-03 06:30\n"
 "Language-Team: \n"
 "Language: pt-BR\n"
 "MIME-Version: 1.0\n"
@@ -762,6 +762,13 @@ msgctxt ",B97EA1CB4795D31B6123D49DA26A1632"
 msgid "Map Title"
 msgstr "Título do mapa"
 
+#. Key:	07A0742E4CBB0ED2E2D7C4A924351820
+#. SourceLocation:	/Game/UI/Menu/W_LyraFrontEnd.W_LyraFrontEnd_C:ExecuteUbergraph_W_LyraFrontEnd [Script Bytecode]
+#: /Game/UI/Menu/W_LyraFrontEnd.W_LyraFrontEnd_C:ExecuteUbergraph_W_LyraFrontEnd [Script Bytecode]
+msgctxt ",07A0742E4CBB0ED2E2D7C4A924351820"
+msgid "Log Out"
+msgstr ""
+
 #. Key:	629A4A544738DC936BC01E82B1EBA722
 #. SourceLocation:	/Game/UI/Menu/W_LyraFrontEnd.W_LyraFrontEnd_C:ExecuteUbergraph_W_LyraFrontEnd [Script Bytecode]
 #: /Game/UI/Menu/W_LyraFrontEnd.W_LyraFrontEnd_C:ExecuteUbergraph_W_LyraFrontEnd [Script Bytecode]
@@ -782,6 +789,13 @@ msgstr "Sair do jogo"
 msgctxt ",9395402C4381A44435E10798328D6E3F"
 msgid "Credits"
 msgstr "Créditos"
+
+#. Key:	DEC281F94DA277B0D94ED589D15959E9
+#. SourceLocation:	/Game/UI/Menu/W_LyraFrontEnd.W_LyraFrontEnd_C:WidgetTree.LogoutButton.ButtonText
+#: /Game/UI/Menu/W_LyraFrontEnd.W_LyraFrontEnd_C:WidgetTree.LogoutButton.ButtonText
+msgctxt ",DEC281F94DA277B0D94ED589D15959E9"
+msgid "Logout"
+msgstr ""
 
 #. Key:	8703EB4442A681348138D983FE3C7FEF
 #. SourceLocation:	/Game/UI/Menu/W_LyraFrontEnd.W_LyraFrontEnd_C:WidgetTree.OptionsButton.ButtonText
@@ -2625,8 +2639,8 @@ msgid "{Hours}:{Minutes}"
 msgstr "{Hours}:{Minutes}"
 
 #. Key:	DDDC55F044A6D009AE3FC89634A4FBE3
-#. SourceLocation:	Config/DefaultInput.ini(39)
-#: Config/DefaultInput.ini(39)
+#. SourceLocation:	Config/DefaultInput.ini(41)
+#: Config/DefaultInput.ini(41)
 msgctxt ",DDDC55F044A6D009AE3FC89634A4FBE3"
 msgid "Back"
 msgstr "Voltar"
@@ -3023,6 +3037,20 @@ msgctxt "Lyra,LyraReplayName_Format"
 msgid "Client Replay {0}"
 msgstr ""
 
+#. Key:	HDRCalibrationValue_Name
+#. SourceLocation:	Source/LyraGame/Settings/CustomSettings/LyraSettingAction_HDRCalibrationEditor.cpp(17)
+#: Source/LyraGame/Settings/CustomSettings/LyraSettingAction_HDRCalibrationEditor.cpp(17)
+msgctxt "LyraSettings,HDRCalibrationValue_Name"
+msgid "HDR Max Luminance"
+msgstr ""
+
+#. Key:	HDRCalibrationValue_Description
+#. SourceLocation:	Source/LyraGame/Settings/CustomSettings/LyraSettingAction_HDRCalibrationEditor.cpp(18)
+#: Source/LyraGame/Settings/CustomSettings/LyraSettingAction_HDRCalibrationEditor.cpp(18)
+msgctxt "LyraSettings,HDRCalibrationValue_Description"
+msgid "The maximum luminance for the HDR display."
+msgstr ""
+
 #. Key:	SafeZoneValue_Name
 #. SourceLocation:	Source/LyraGame/Settings/CustomSettings/LyraSettingAction_SafeZoneEditor.cpp(20)
 #: Source/LyraGame/Settings/CustomSettings/LyraSettingAction_SafeZoneEditor.cpp(20)
@@ -3050,6 +3078,13 @@ msgstr ""
 msgctxt "LyraSettings,DynamicDetails_KeyboardInputAction"
 msgid "Bindings for {0}"
 msgstr "Combinações de tecla para {0}"
+
+#. Key:	UnknownDisplay
+#. SourceLocation:	Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Display.cpp(91)
+#: Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Display.cpp(91)
+msgctxt "LyraSettings,UnknownDisplay"
+msgid "[Unknown]"
+msgstr ""
 
 #. Key:	SystemDefaultLanguage
 #. SourceLocation:	Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Language.cpp(144)
@@ -3157,50 +3192,50 @@ msgid "Text and Graph"
 msgstr "Texto e gráfico"
 
 #. Key:	AspectRatio-4:3
-#. SourceLocation:	Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(413)
-#: Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(413)
+#. SourceLocation:	Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(461)
+#: Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(461)
 msgctxt "LyraSettings,AspectRatio-4:3"
 msgid "4:3"
 msgstr "4:3"
 
 #. Key:	AspectRatio-16:9
-#. SourceLocation:	Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(417)
-#: Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(417)
+#. SourceLocation:	Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(465)
+#: Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(465)
 msgctxt "LyraSettings,AspectRatio-16:9"
 msgid "16:9"
 msgstr "16:9"
 
 #. Key:	AspectRatio-16:10
-#. SourceLocation:	Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(421)
-#: Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(421)
+#. SourceLocation:	Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(469)
+#: Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(469)
 msgctxt "LyraSettings,AspectRatio-16:10"
 msgid "16:10"
 msgstr "16:10"
 
 #. Key:	AspectRatio-3:4
-#. SourceLocation:	Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(425)
-#: Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(425)
+#. SourceLocation:	Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(473)
+#: Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(473)
 msgctxt "LyraSettings,AspectRatio-3:4"
 msgid "3:4"
 msgstr "3:4"
 
 #. Key:	AspectRatio-9:16
-#. SourceLocation:	Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(429)
-#: Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(429)
+#. SourceLocation:	Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(477)
+#: Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(477)
 msgctxt "LyraSettings,AspectRatio-9:16"
 msgid "9:16"
 msgstr "9:16"
 
 #. Key:	AspectRatio-10:16
-#. SourceLocation:	Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(433)
-#: Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(433)
+#. SourceLocation:	Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(481)
+#: Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(481)
 msgctxt "LyraSettings,AspectRatio-10:16"
 msgid "10:16"
 msgstr "10:16"
 
 #. Key:	AspectRatio
-#. SourceLocation:	Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(445)
-#: Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(445)
+#. SourceLocation:	Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(493)
+#: Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Resolution.cpp(493)
 msgctxt "LyraSettings,AspectRatio"
 msgid "{X} x {Y}"
 msgstr "{X} x {Y}"
@@ -3577,218 +3612,253 @@ msgid "Adjusts the volume of dialogue for game characters and voice overs."
 msgstr "Ajusta o volume do diálogo entre personagens do jogo e dublagens."
 
 #. Key:	InvertHorizontalAxis_Gamepad_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(106)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(106)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(108)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(108)
 msgctxt "Lyra,InvertHorizontalAxis_Gamepad_Name"
 msgid "Invert Horizontal Axis"
 msgstr "Inverter eixo horizontal"
 
 #. Key:	InvertHorizontalAxis_Gamepad_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(107)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(107)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(109)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(109)
 msgctxt "Lyra,InvertHorizontalAxis_Gamepad_Description"
 msgid "Enable the inversion of the Horizontal look axis."
 msgstr "Habilitar a inversão do eixo de visão horizontal."
 
 #. Key:	GamepadBindingCollection_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(122)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(122)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(124)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(124)
 msgctxt "Lyra,GamepadBindingCollection_Name"
 msgid "Controls"
 msgstr "Controles"
 
 #. Key:	BasicSensitivityCollection_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(131)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(131)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(133)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(133)
 msgctxt "Lyra,BasicSensitivityCollection_Name"
 msgid "Sensitivity"
 msgstr "Sensibilidade"
 
 #. Key:	EFortGamepadSensitivity_Slow
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(136)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(136)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(138)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(138)
 msgctxt "Lyra,EFortGamepadSensitivity_Slow"
 msgid "1 (Slow)"
 msgstr "1 (Lento)"
 
 #. Key:	EFortGamepadSensitivity_SlowPlus
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(137)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(137)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(139)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(139)
 msgctxt "Lyra,EFortGamepadSensitivity_SlowPlus"
 msgid "2 (Slow+)"
 msgstr "2 (Lento+)"
 
 #. Key:	EFortGamepadSensitivity_SlowPlusPlus
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(138)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(138)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(140)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(140)
 msgctxt "Lyra,EFortGamepadSensitivity_SlowPlusPlus"
 msgid "3 (Slow++)"
 msgstr "3 (Lento++)"
 
 #. Key:	EFortGamepadSensitivity_Normal
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(139)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(139)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(141)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(141)
 msgctxt "Lyra,EFortGamepadSensitivity_Normal"
 msgid "4 (Normal)"
 msgstr "4 (Normal)"
 
 #. Key:	EFortGamepadSensitivity_NormalPlus
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(140)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(140)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(142)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(142)
 msgctxt "Lyra,EFortGamepadSensitivity_NormalPlus"
 msgid "5 (Normal+)"
 msgstr "5 (Normal+)"
 
 #. Key:	EFortGamepadSensitivity_NormalPlusPlus
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(141)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(141)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(143)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(143)
 msgctxt "Lyra,EFortGamepadSensitivity_NormalPlusPlus"
 msgid "6 (Normal++)"
 msgstr "6 (Normal++)"
 
 #. Key:	EFortGamepadSensitivity_Fast
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(142)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(142)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(144)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(144)
 msgctxt "Lyra,EFortGamepadSensitivity_Fast"
 msgid "7 (Fast)"
 msgstr "7 (Rápido)"
 
 #. Key:	EFortGamepadSensitivity_FastPlus
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(143)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(143)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(145)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(145)
 msgctxt "Lyra,EFortGamepadSensitivity_FastPlus"
 msgid "8 (Fast+)"
 msgstr "8 (Rápido+)"
 
 #. Key:	EFortGamepadSensitivity_FastPlusPlus
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(144)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(144)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(146)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(146)
 msgctxt "Lyra,EFortGamepadSensitivity_FastPlusPlus"
 msgid "9 (Fast++)"
 msgstr "9 (Rápido++)"
 
 #. Key:	EFortGamepadSensitivity_Insane
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(145)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(145)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(147)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(147)
 msgctxt "Lyra,EFortGamepadSensitivity_Insane"
 msgid "10 (Insane)"
 msgstr "10 (Insano)"
 
 #. Key:	LookSensitivityPreset_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(152)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(152)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(154)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(154)
 msgctxt "Lyra,LookSensitivityPreset_Name"
 msgid "Look Sensitivity"
 msgstr "Sensibilidade visual"
 
 #. Key:	LookSensitivityPreset_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(153)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(153)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(155)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(155)
 msgctxt "Lyra,LookSensitivityPreset_Description"
 msgid "How quickly your view rotates."
 msgstr "A rapidez com que sua visão gira."
 
 #. Key:	LookSensitivityPresetAds_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(170)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(170)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(172)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(172)
 msgctxt "Lyra,LookSensitivityPresetAds_Name"
 msgid "Aim Sensitivity (ADS)"
 msgstr "Sensibilidade da mira (ADS)"
 
 #. Key:	LookSensitivityPresetAds_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(171)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(171)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(173)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(173)
 msgctxt "Lyra,LookSensitivityPresetAds_Description"
 msgid "How quickly your view rotates while aiming down sights (ADS)."
 msgstr "A rapidez com que sua visão gira enquanto mira (ADS)."
 
 #. Key:	DeadZoneCollection_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(192)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(192)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(194)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(194)
 msgctxt "Lyra,DeadZoneCollection_Name"
 msgid "Controller DeadZone"
 msgstr "Zona morta do controle"
 
 #. Key:	MoveStickDeadZone_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(199)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(199)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(201)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(201)
 msgctxt "Lyra,MoveStickDeadZone_Name"
 msgid "Left Stick DeadZone"
 msgstr "Zona morta do analógico esquerdo"
 
 #. Key:	MoveStickDeadZone_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(200)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(200)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(202)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(202)
 msgctxt "Lyra,MoveStickDeadZone_Description"
 msgid "Increase or decrease the area surrounding the stick that we ignore input from.  Setting this value too low may result in the character continuing to move even after removing your finger from the stick."
 msgstr "Aumenta ou diminui a área ao redor do analógico cuja entrada ignoramos. Definir este valor muito baixo pode fazer com que o personagem continue se movendo mesmo depois de remover o dedo do analógico."
 
 #. Key:	LookStickDeadZone_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(215)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(215)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(217)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(217)
 msgctxt "Lyra,LookStickDeadZone_Name"
 msgid "Right Stick DeadZone"
 msgstr "Zona morta do analógico direito"
 
 #. Key:	LookStickDeadZone_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(216)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(216)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(218)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(218)
 msgctxt "Lyra,LookStickDeadZone_Description"
 msgid "Increase or decrease the area surrounding the stick that we ignore input from.  Setting this value too low may result in the camera continuing to move even after removing your finger from the stick."
 msgstr "Aumenta ou diminui a área ao redor do analógico cuja entrada ignoramos. Definir este valor muito baixo pode fazer com que a câmera continue se movendo mesmo depois de remover o dedo do analógico."
 
+#. Key:	GamepadInputAPI_Name
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(237)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(237)
+msgctxt "Lyra,GamepadInputAPI_Name"
+msgid "Gamepad Input API"
+msgstr ""
+
+#. Key:	GamepadInputAPI_Option_Name
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(244)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(244)
+msgctxt "Lyra,GamepadInputAPI_Option_Name"
+msgid "Gamepad Input API"
+msgstr ""
+
+#. Key:	GamepadInputAPI_Option_Description
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(245)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(245)
+msgctxt "Lyra,GamepadInputAPI_Option_Description"
+msgid "Which API should be used for processing gamepad input on PC devices.\n\nChanging this may improve compatibility with more input devices.\n\nChanging this setting requires a restart to take effect."
+msgstr ""
+
 #. Key:	GamepadCollection_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(23)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(23)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(25)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(25)
 msgctxt "Lyra,GamepadCollection_Name"
 msgid "Gamepad"
 msgstr "Controle"
 
+#. Key:	GamepadAPI_Option_Legacy
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(271)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(271)
+msgctxt "Lyra,GamepadAPI_Option_Legacy"
+msgid "XInput + DualShock"
+msgstr ""
+
+#. Key:	GamepadAPI_Option_Modern
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(272)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(272)
+msgctxt "Lyra,GamepadAPI_Option_Modern"
+msgid "Game Input"
+msgstr ""
+
 #. Key:	HardwareCollection_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(31)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(31)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(33)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(33)
 msgctxt "Lyra,HardwareCollection_Name"
 msgid "Hardware"
 msgstr "Hardware"
 
 #. Key:	ControllerHardware_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(38)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(38)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(40)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(40)
 msgctxt "Lyra,ControllerHardware_Name"
 msgid "Controller Hardware"
 msgstr "Hardware do controle"
 
 #. Key:	ControllerHardware_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(39)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(39)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(41)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(41)
 msgctxt "Lyra,ControllerHardware_Description"
 msgid "The type of controller you're using."
 msgstr "O tipo de controle que você está usando."
 
 #. Key:	GamepadVibration_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(80)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(80)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(82)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(82)
 msgctxt "Lyra,GamepadVibration_Name"
 msgid "Vibration"
 msgstr "Vibração"
 
 #. Key:	GamepadVibration_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(81)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(81)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(83)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(83)
 msgctxt "Lyra,GamepadVibration_Description"
 msgid "Turns controller vibration on/off."
 msgstr "Liga/desliga a vibração do controle."
 
 #. Key:	InvertVerticalAxis_Gamepad_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(93)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(93)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(95)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(95)
 msgctxt "Lyra,InvertVerticalAxis_Gamepad_Name"
 msgid "Invert Vertical Axis"
 msgstr "Inverter eixo vertical"
 
 #. Key:	InvertVerticalAxis_Gamepad_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(94)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(94)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(96)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Gamepad.cpp(96)
 msgctxt "Lyra,InvertVerticalAxis_Gamepad_Description"
 msgid "Enable the inversion of the vertical look axis."
 msgstr "Habilitar a inversão do eixo de visão vertical."
@@ -4304,642 +4374,747 @@ msgctxt "Lyra,LatencyMarkerRequireStatsEnabled"
 msgid "Latency Tracking Stats must be enabled to use this."
 msgstr ""
 
+#. Key:	VideoCollection_Name
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(144)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(144)
+msgctxt "Lyra,VideoCollection_Name"
+msgid "Video"
+msgstr "Vídeo"
+
 #. Key:	DisplayCollection_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(110)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(110)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(162)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(162)
 msgctxt "Lyra,DisplayCollection_Name"
 msgid "Display"
 msgstr "Exibição"
 
 #. Key:	WindowMode_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(117)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(117)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(169)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(169)
 msgctxt "Lyra,WindowMode_Name"
 msgid "Window Mode"
 msgstr "Configuração de Janela"
 
 #. Key:	WindowMode_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(118)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(118)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(170)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(170)
 msgctxt "Lyra,WindowMode_Description"
 msgid "In Windowed mode you can interact with other windows more easily, and drag the edges of the window to set the size. In Windowed Fullscreen mode you can easily switch between applications. In Fullscreen mode you cannot interact with other windows as easily, but the game will run slightly faster."
 msgstr "No modo Janela, é possível interagir com outras janelas mais facilmente e arrastar as bordas da janela para definir o tamanho. No modo Janela em tela cheia, é possível alternar facilmente entre os aplicativos. No modo Tela cheia, não é possível interagir com outras janelas tão facilmente, mas o jogo será executado um pouco mais rápido."
 
 #. Key:	WindowModeFullscreen
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(122)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(122)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(174)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(174)
 msgctxt "Lyra,WindowModeFullscreen"
 msgid "Fullscreen"
 msgstr "Tela cheia"
 
 #. Key:	WindowModeWindowedFullscreen
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(123)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(123)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(175)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(175)
 msgctxt "Lyra,WindowModeWindowedFullscreen"
 msgid "Windowed Fullscreen"
 msgstr "Janela em tela cheia"
 
 #. Key:	WindowModeWindowed
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(124)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(124)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(176)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(176)
 msgctxt "Lyra,WindowModeWindowed"
 msgid "Windowed"
 msgstr "Janela"
 
+#. Key:	Display_Name
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(189)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(189)
+msgctxt "Lyra,Display_Name"
+msgid "Display"
+msgstr ""
+
+#. Key:	Display_Description
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(190)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(190)
+msgctxt "Lyra,Display_Description"
+msgid "The display on which the window should be displayed."
+msgstr ""
+
 #. Key:	Resolution_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(136)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(136)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(200)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(200)
 msgctxt "Lyra,Resolution_Name"
 msgid "Resolution"
 msgstr "Resolução"
 
 #. Key:	Resolution_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(137)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(137)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(201)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(201)
 msgctxt "Lyra,Resolution_Description"
 msgid "Display Resolution determines the size of the window in Windowed mode. In Fullscreen mode, Display Resolution determines the graphics card output resolution, which can result in black bars depending on monitor and graphics card. Display Resolution is inactive in Windowed Fullscreen mode."
 msgstr "A Resolução da tela determina o tamanho da janela no modo Janela. No modo Tela cheia, a Resolução da tela determina a resolução de saída da placa de vídeo, o que pode resultar em barras pretas dependendo do monitor e da placa de vídeo. A Resolução da tela fica inativa no modo Janela em tela cheia."
 
 #. Key:	ResolutionWindowedFullscreen_Disabled
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(145)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(145)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(209)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(209)
 msgctxt "Lyra,ResolutionWindowedFullscreen_Disabled"
 msgid "When the Window Mode is set to <strong>Windowed Fullscreen</>, the resolution must match the native desktop resolution."
 msgstr "Quando a configuração de janela é definida como <strong>Janela em tela cheia</>, a resolução deve ser igual à resolução nativa da área de trabalho."
 
 #. Key:	GraphicsCollection_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(163)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(163)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(286)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(286)
 msgctxt "Lyra,GraphicsCollection_Name"
 msgid "Graphics"
 msgstr "Gráficos"
 
 #. Key:	ColorBlindMode_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(170)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(170)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(293)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(293)
 msgctxt "Lyra,ColorBlindMode_Name"
 msgid "Color Blind Mode"
 msgstr "Modo daltônico"
 
 #. Key:	ColorBlindMode_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(171)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(171)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(294)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(294)
 msgctxt "Lyra,ColorBlindMode_Description"
 msgid "Using the provided images, test out the different color blind modes to find a color correction that works best for you."
 msgstr "Usando as imagens fornecidas, teste os diferentes modos daltônicos para encontrar a correção de cor que funciona melhor para você."
 
 #. Key:	ColorBlindRotatorSettingOff
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(176)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(176)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(299)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(299)
 msgctxt "Lyra,ColorBlindRotatorSettingOff"
 msgid "Off"
 msgstr "Desligado"
 
 #. Key:	ColorBlindRotatorSettingDeuteranope
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(177)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(177)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(300)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(300)
 msgctxt "Lyra,ColorBlindRotatorSettingDeuteranope"
 msgid "Deuteranope"
 msgstr "Deuteranopia"
 
 #. Key:	ColorBlindRotatorSettingProtanope
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(178)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(178)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(301)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(301)
 msgctxt "Lyra,ColorBlindRotatorSettingProtanope"
 msgid "Protanope"
 msgstr "Protanopia"
 
 #. Key:	ColorBlindRotatorSettingTritanope
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(179)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(179)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(302)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(302)
 msgctxt "Lyra,ColorBlindRotatorSettingTritanope"
 msgid "Tritanope"
 msgstr "Tritanopia"
 
 #. Key:	ColorBlindStrength_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(189)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(189)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(312)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(312)
 msgctxt "Lyra,ColorBlindStrength_Name"
 msgid "Color Blind Strength"
 msgstr "Intensidade para pessoas daltônicas"
 
 #. Key:	ColorBlindStrength_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(190)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(190)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(313)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(313)
 msgctxt "Lyra,ColorBlindStrength_Description"
 msgid "Using the provided images, test out the different strengths to find a color correction that works best for you."
 msgstr "Usando as imagens fornecidas, teste as diferentes intensidades para encontrar a correção de cor que funciona melhor para você."
 
 #. Key:	Brightness_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(208)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(208)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(331)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(331)
 msgctxt "Lyra,Brightness_Name"
 msgid "Brightness"
 msgstr "Brilho"
 
 #. Key:	Brightness_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(209)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(209)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(332)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(332)
 msgctxt "Lyra,Brightness_Description"
 msgid "Adjusts the brightness."
 msgstr "Ajusta o brilho."
 
 #. Key:	BrightnessFormat
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(215)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(215)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(338)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(338)
 msgctxt "Lyra,BrightnessFormat"
 msgid "{0}%"
 msgstr "{0}%"
 
+#. Key:	AllowHDR_Name
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(352)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(352)
+msgctxt "Lyra,AllowHDR_Name"
+msgid "Allow HDR"
+msgstr ""
+
+#. Key:	AllowHDR_Description
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(353)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(353)
+msgctxt "Lyra,AllowHDR_Description"
+msgid "Allow HDR if the display is capable of HDR output."
+msgstr ""
+
+#. Key:	HDRUseCalibration_Name
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(371)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(371)
+msgctxt "Lyra,HDRUseCalibration_Name"
+msgid "HDR Use Calibration"
+msgstr ""
+
+#. Key:	HDRUseCalibration_Description
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(372)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(372)
+msgctxt "Lyra,HDRUseCalibration_Description"
+msgid "Use calibration for HDR, which can be more accurate than OS information."
+msgstr ""
+
+#. Key:	HDRCalibrationEditor_Name
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(388)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(388)
+msgctxt "Lyra,HDRCalibrationEditor_Name"
+msgid "HDR Calibration"
+msgstr ""
+
+#. Key:	HDRCalibrationEditor_Description
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(389)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(389)
+msgctxt "Lyra,HDRCalibrationEditor_Description"
+msgid "Calibrate HDR for the display."
+msgstr ""
+
+#. Key:	HDRCalibration_Action
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(390)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(390)
+msgctxt "Lyra,HDRCalibration_Action"
+msgid "Calibrate HDR Display"
+msgstr ""
+
+#. Key:	HDRNeededForCalibration
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(402)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(402)
+msgctxt "Lyra,HDRNeededForCalibration"
+msgid "Calibration needs HDR display output to be enabled and active."
+msgstr ""
+
+#. Key:	HDRPaperWhite_Name
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(414)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(414)
+msgctxt "Lyra,HDRPaperWhite_Name"
+msgid "HDR Paper White"
+msgstr ""
+
+#. Key:	HDRPaperWhite_Description
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(415)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(415)
+msgctxt "Lyra,HDRPaperWhite_Description"
+msgid "Adjusts the HDR paper white value. 203 nits is ideal for dim environments. You may want to increase if your environment is brightly lit."
+msgstr ""
+
 #. Key:	SafeZone_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(228)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(228)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(432)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(432)
 msgctxt "Lyra,SafeZone_Name"
 msgid "Safe Zone"
 msgstr "Área segura"
 
 #. Key:	SafeZone_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(229)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(229)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(433)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(433)
 msgctxt "Lyra,SafeZone_Description"
 msgid "Set the UI safe zone for the platform."
 msgstr "Definir a área segura da interface do usuário para a plataforma."
 
 #. Key:	SafeZone_Action
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(230)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(230)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(434)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(434)
 msgctxt "Lyra,SafeZone_Action"
 msgid "Set Safe Zone"
 msgstr "Definir área segura"
 
 #. Key:	GraphicsQuality_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(254)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(254)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(458)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(458)
 msgctxt "Lyra,GraphicsQuality_Name"
 msgid "Graphics Quality"
 msgstr "Qualidade gráfica"
 
 #. Key:	DeviceProfileSuffix_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(265)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(265)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(469)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(469)
 msgctxt "Lyra,DeviceProfileSuffix_Name"
 msgid "Quality Presets"
 msgstr "Predefinições de qualidade"
 
 #. Key:	DeviceProfileSuffix_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(266)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(266)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(470)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(470)
 msgctxt "Lyra,DeviceProfileSuffix_Description"
 msgid "Choose between different quality presets to make a trade off between quality and speed."
 msgstr "Escolha entre diferentes predefinições de qualidade para conciliar qualidade e velocidade."
 
 #. Key:	FrameRateLimit_Mobile_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(294)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(294)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(498)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(498)
 msgctxt "Lyra,FrameRateLimit_Mobile_Name"
 msgid "Frame Rate Limit"
 msgstr "Limite de quadros por segundo"
 
 #. Key:	FrameRateLimit_Mobile_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(295)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(295)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(499)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(499)
 msgctxt "Lyra,FrameRateLimit_Mobile_Description"
 msgid "Select a desired framerate. Use this to fine tune performance on your device."
 msgstr "Selecione a taxa de quadros desejada. Use esta opção para aprimorar o desempenho no seu dispositivo."
 
 #. Key:	AutoSetQuality_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(306)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(306)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(510)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(510)
 msgctxt "Lyra,AutoSetQuality_Name"
 msgid "Auto-Set Quality"
 msgstr "Configuração automática de qualidade"
 
 #. Key:	AutoSetQuality_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(307)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(307)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(511)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(511)
 msgctxt "Lyra,AutoSetQuality_Description"
 msgid "Automatically configure the graphics quality options based on a benchmark of the hardware."
 msgstr "Configura as opções de qualidade dos gráficos automaticamente com base em um parâmetro do hardware."
 
 #. Key:	AutoSetQuality_Action
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(310)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(310)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(514)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(514)
 msgctxt "Lyra,AutoSetQuality_Action"
 msgid "Auto-Set"
 msgstr "Configuração automática"
 
 #. Key:	GraphicsQualityPresets_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(354)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(354)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(558)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(558)
 msgctxt "Lyra,GraphicsQualityPresets_Name"
 msgid "Quality Presets"
 msgstr "Predefinições de qualidade"
 
 #. Key:	GraphicsQualityPresets_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(355)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(355)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(559)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(559)
 msgctxt "Lyra,GraphicsQualityPresets_Description"
 msgid "Quality Preset allows you to adjust multiple video options at once. Try a few options to see what fits your preference and device's performance."
 msgstr "A predefinição de qualidade permite ajustar várias opções de vídeo de uma só vez. Experimente algumas opções para ver o que se adapta à sua preferência e ao desempenho do seu dispositivo."
 
 #. Key:	ResolutionScale_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(375)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(375)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(579)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(579)
 msgctxt "Lyra,ResolutionScale_Name"
 msgid "3D Resolution"
 msgstr "Resolução 3D"
 
 #. Key:	ResolutionScale_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(376)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(376)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(580)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(580)
 msgctxt "Lyra,ResolutionScale_Description"
 msgid "3D resolution determines the resolution that objects are rendered in game, but does not affect the main menu.  Lower resolutions can significantly increase frame rate."
 msgstr "A resolução 3D determina a resolução com que os objetos são renderizados no jogo, mas não afeta o menu principal. Resoluções menores podem aumentar significativamente a taxa de quadros."
 
 #. Key:	GlobalIlluminationQuality_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(395)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(395)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(599)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(599)
 msgctxt "Lyra,GlobalIlluminationQuality_Name"
 msgid "Global Illumination"
 msgstr "Iluminação global"
 
 #. Key:	GlobalIlluminationQuality_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(396)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(396)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(600)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(600)
 msgctxt "Lyra,GlobalIlluminationQuality_Description"
 msgid "Global Illumination controls the quality of dynamically calculated indirect lighting bounces, sky shadowing and Ambient Occlusion. Settings of 'High' and above use more accurate ray tracing methods to solve lighting, but can reduce performance."
 msgstr "A iluminação global controla a qualidade dos reflexos de iluminação indireta calculados dinamicamente, a sombra do céu e a oclusão de ambiente. As definições de \"Alto\" e acima usam métodos de ray tracing mais precisos para resolver a iluminação, mas podem reduzir o desempenho."
 
 #. Key:	VisualEffectQualityLow
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(400)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(400)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(604)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(604)
 msgctxt "Lyra,VisualEffectQualityLow"
 msgid "Low"
 msgstr "Baixo"
 
 #. Key:	VisualEffectQualityMedium
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(401)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(401)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(605)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(605)
 msgctxt "Lyra,VisualEffectQualityMedium"
 msgid "Medium"
 msgstr "Médio"
 
 #. Key:	VisualEffectQualityHigh
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(402)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(402)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(606)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(606)
 msgctxt "Lyra,VisualEffectQualityHigh"
 msgid "High"
 msgstr "Alto"
 
 #. Key:	VisualEffectQualityEpic
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(403)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(403)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(607)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(607)
 msgctxt "Lyra,VisualEffectQualityEpic"
 msgid "Epic"
 msgstr "Épico"
 
 #. Key:	Shadows_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(418)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(418)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(622)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(622)
 msgctxt "Lyra,Shadows_Name"
 msgid "Shadows"
 msgstr "Sombras"
 
 #. Key:	Shadows_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(419)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(419)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(623)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(623)
 msgctxt "Lyra,Shadows_Description"
 msgid "Shadow quality determines the resolution and view distance of dynamic shadows. Shadows improve visual quality and give better depth perception, but can reduce performance."
 msgstr "A qualidade da sombra determina a resolução e a distância de visualização das sombras dinâmicas. As sombras aprimoram a qualidade visual e proporcionam uma melhor percepção de profundidade, mas podem reduzir o desempenho."
 
 #. Key:	ShadowLow
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(423)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(423)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(627)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(627)
 msgctxt "Lyra,ShadowLow"
 msgid "Off"
 msgstr "Desligado"
 
 #. Key:	ShadowMedium
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(424)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(424)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(628)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(628)
 msgctxt "Lyra,ShadowMedium"
 msgid "Medium"
 msgstr "Médio"
 
 #. Key:	ShadowHigh
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(425)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(425)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(629)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(629)
 msgctxt "Lyra,ShadowHigh"
 msgid "High"
 msgstr "Alto"
 
 #. Key:	ShadowEpic
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(426)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(426)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(630)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(630)
 msgctxt "Lyra,ShadowEpic"
 msgid "Epic"
 msgstr "Épico"
 
 #. Key:	AntiAliasing_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(441)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(441)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(645)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(645)
 msgctxt "Lyra,AntiAliasing_Name"
 msgid "Anti-Aliasing"
 msgstr "Anti-aliasing"
 
 #. Key:	AntiAliasing_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(442)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(442)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(646)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(646)
 msgctxt "Lyra,AntiAliasing_Description"
 msgid "Anti-Aliasing reduces jaggy artifacts along geometry edges. Increasing this setting will make edges look smoother, but can reduce performance. Higher settings mean more anti-aliasing."
 msgstr "O anti-aliasing reduz os artefatos pontiagudos nas bordas geométricas. Aumentar esta configuração deixará as bordas mais suaves, mas poderá reduzir o desempenho. Configurações mais elevadas representam um maior grau de anti-aliasing."
 
 #. Key:	AntiAliasingLow
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(446)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(446)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(650)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(650)
 msgctxt "Lyra,AntiAliasingLow"
 msgid "Off"
 msgstr "Desligado"
 
 #. Key:	AntiAliasingMedium
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(447)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(447)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(651)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(651)
 msgctxt "Lyra,AntiAliasingMedium"
 msgid "Medium"
 msgstr "Médio"
 
 #. Key:	AntiAliasingHigh
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(448)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(448)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(652)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(652)
 msgctxt "Lyra,AntiAliasingHigh"
 msgid "High"
 msgstr "Alto"
 
 #. Key:	AntiAliasingEpic
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(449)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(449)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(653)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(653)
 msgctxt "Lyra,AntiAliasingEpic"
 msgid "Epic"
 msgstr "Épico"
 
 #. Key:	ViewDistance_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(464)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(464)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(668)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(668)
 msgctxt "Lyra,ViewDistance_Name"
 msgid "View Distance"
 msgstr "Distância de visualização"
 
 #. Key:	ViewDistance_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(465)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(465)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(669)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(669)
 msgctxt "Lyra,ViewDistance_Description"
 msgid "View distance determines how far away objects are culled for performance."
 msgstr "A distância de visualização determina com que distância os objetos são selecionados visando o desempenho."
 
 #. Key:	ViewDistanceNear
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(469)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(469)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(673)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(673)
 msgctxt "Lyra,ViewDistanceNear"
 msgid "Near"
 msgstr "Perto"
 
 #. Key:	ViewDistanceMedium
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(470)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(470)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(674)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(674)
 msgctxt "Lyra,ViewDistanceMedium"
 msgid "Medium"
 msgstr "Médio"
 
 #. Key:	ViewDistanceFar
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(471)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(471)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(675)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(675)
 msgctxt "Lyra,ViewDistanceFar"
 msgid "Far"
 msgstr "Longe"
 
 #. Key:	ViewDistanceEpic
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(472)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(472)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(676)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(676)
 msgctxt "Lyra,ViewDistanceEpic"
 msgid "Epic"
 msgstr "Épico"
 
 #. Key:	TextureQuality_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(487)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(487)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(691)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(691)
 msgctxt "Lyra,TextureQuality_Name"
 msgid "Textures"
 msgstr "Texturas"
 
 #. Key:	TextureQuality_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(489)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(489)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(693)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(693)
 msgctxt "Lyra,TextureQuality_Description"
 msgid "Texture quality determines the resolution of textures in game. Increasing this setting will make objects more detailed, but can reduce performance."
 msgstr "A qualidade da textura determina a resolução das texturas do jogo. O aumento dessa configuração deixará os objetos mais detalhados, mas poderá reduzir o desempenho."
 
 #. Key:	TextureQualityLow
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(493)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(493)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(697)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(697)
 msgctxt "Lyra,TextureQualityLow"
 msgid "Low"
 msgstr "Baixo"
 
 #. Key:	TextureQualityMedium
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(494)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(494)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(698)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(698)
 msgctxt "Lyra,TextureQualityMedium"
 msgid "Medium"
 msgstr "Médio"
 
 #. Key:	TextureQualityHigh
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(495)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(495)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(699)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(699)
 msgctxt "Lyra,TextureQualityHigh"
 msgid "High"
 msgstr "Alto"
 
 #. Key:	TextureQualityEpic
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(496)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(496)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(700)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(700)
 msgctxt "Lyra,TextureQualityEpic"
 msgid "Epic"
 msgstr "Épico"
 
 #. Key:	VisualEffectQuality_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(511)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(511)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(715)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(715)
 msgctxt "Lyra,VisualEffectQuality_Name"
 msgid "Effects"
 msgstr "Efeitos"
 
 #. Key:	VisualEffectQuality_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(512)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(512)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(716)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(716)
 msgctxt "Lyra,VisualEffectQuality_Description"
 msgid "Effects determines the quality of visual effects and lighting in game. Increasing this setting will increase the quality of visual effects, but can reduce performance."
 msgstr "Os efeitos determinam a qualidade dos efeitos visuais e da iluminação do jogo. O aumento dessa configuração aumenta a qualidade dos efeitos visuais, mas pode reduzir o desempenho."
 
 #. Key:	ReflectionQuality_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(534)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(534)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(738)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(738)
 msgctxt "Lyra,ReflectionQuality_Name"
 msgid "Reflections"
 msgstr "Reflexos"
 
 #. Key:	ReflectionQuality_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(535)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(535)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(739)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(739)
 msgctxt "Lyra,ReflectionQuality_Description"
 msgid "Reflection quality determines the resolution and accuracy of reflections.  Settings of 'High' and above use more accurate ray tracing methods to solve reflections, but can reduce performance."
 msgstr "A qualidade do reflexo determina a resolução e a precisão dos reflexos.  As definições de \"Alto\" e acima usam métodos de ray tracing mais precisos para resolver os reflexos, mas podem reduzir o desempenho."
 
 #. Key:	PostProcessingQuality_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(557)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(557)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(761)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(761)
 msgctxt "Lyra,PostProcessingQuality_Name"
 msgid "Post Processing"
 msgstr "Pós-processamento"
 
 #. Key:	PostProcessingQuality_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(558)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(558)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(762)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(762)
 msgctxt "Lyra,PostProcessingQuality_Description"
 msgid "Post Processing effects include Motion Blur, Depth of Field and Bloom. Increasing this setting improves the quality of post process effects, but can reduce performance."
 msgstr "Os efeitos de pós-processamento incluem Desfoque de movimento, Profundidade de campo e Bloom. Aumentar essa configuração melhora a qualidade dos efeitos de pós-processamento, mas pode reduzir o desempenho."
 
 #. Key:	PostProcessingQualityLow
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(562)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(562)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(766)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(766)
 msgctxt "Lyra,PostProcessingQualityLow"
 msgid "Low"
 msgstr "Baixo"
 
 #. Key:	PostProcessingQualityMedium
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(563)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(563)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(767)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(767)
 msgctxt "Lyra,PostProcessingQualityMedium"
 msgid "Medium"
 msgstr "Médio"
 
 #. Key:	PostProcessingQualityHigh
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(564)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(564)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(768)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(768)
 msgctxt "Lyra,PostProcessingQualityHigh"
 msgid "High"
 msgstr "Alto"
 
 #. Key:	PostProcessingQualityEpic
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(565)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(565)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(769)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(769)
 msgctxt "Lyra,PostProcessingQualityEpic"
 msgid "Epic"
 msgstr "Épico"
 
 #. Key:	AdvancedGraphics_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(584)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(584)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(788)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(788)
 msgctxt "Lyra,AdvancedGraphics_Name"
 msgid "Advanced Graphics"
 msgstr "Gráficos avançados"
 
 #. Key:	VerticalSync_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(591)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(591)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(795)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(795)
 msgctxt "Lyra,VerticalSync_Name"
 msgid "Vertical Sync"
 msgstr "Sincronização vertical"
 
 #. Key:	VerticalSync_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(592)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(592)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(796)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(796)
 msgctxt "Lyra,VerticalSync_Description"
 msgid "Enabling Vertical Sync eliminates screen tearing by always rendering and presenting a full frame. Disabling Vertical Sync can give higher frame rate and better input response, but can result in horizontal screen tearing."
 msgstr "A ativação da sincronização vertical elimina a divisão da tela ao sempre renderizar e apresentar um quadro completo. A desativação da sincronização vertical pode fornecer uma taxa de quadros mais alta e uma melhor resposta de entrada, mas pode gerar divisão horizontal da tela."
 
 #. Key:	FullscreenNeededForVSync
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(604)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(604)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(808)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(808)
 msgctxt "Lyra,FullscreenNeededForVSync"
 msgid "This feature only works if 'Window Mode' is set to 'Fullscreen'."
 msgstr "Este recurso funciona somente se a configuração de janela for alterada para \"tela cheia\"."
 
 #. Key:	FPSFormat
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(617)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(617)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(821)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(821)
 msgctxt "Lyra,FPSFormat"
 msgid "{0} FPS"
 msgstr "{0} FPS"
 
+#. Key:	OFF
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(826)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(826)
+msgctxt "Lyra,OFF"
+msgid "OFF"
+msgstr ""
+
 #. Key:	UnlimitedFPS
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(622)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(622)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(836)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(836)
 msgctxt "Lyra,UnlimitedFPS"
 msgid "Unlimited"
 msgstr "Ilimitado"
 
 #. Key:	FrameRateLimit_OnBattery_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(631)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(631)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(845)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(845)
 msgctxt "Lyra,FrameRateLimit_OnBattery_Name"
 msgid "Frame Rate Limit (On Battery)"
 msgstr "Limite de quadros por segundo (usando a bateria)"
 
 #. Key:	FrameRateLimit_OnBattery_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(632)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(632)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(846)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(846)
 msgctxt "Lyra,FrameRateLimit_OnBattery_Description"
 msgid "Frame rate limit when running on battery. Set this lower for a more consistent frame rate or higher for the best experience on faster machines. You may need to disable Vsync to reach high frame rates."
 msgstr "Limite de quadros por segundo ao usar a bateria. Reduza este valor para obter uma taxa de quadros por segundo mais consistente ou aumente-o para otimizar sua experiência em máquinas mais rápidas. Talvez você tenha que desabilitar o Vsync para atingir valores maiores de quadros por segundo."
 
 #. Key:	FrameRateLimit_InMenu_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(649)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(649)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(863)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(863)
 msgctxt "Lyra,FrameRateLimit_InMenu_Name"
 msgid "Frame Rate Limit (Menu)"
 msgstr "Limite de quadros por segundo (menu)"
 
 #. Key:	FrameRateLimit_InMenu_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(650)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(650)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(864)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(864)
 msgctxt "Lyra,FrameRateLimit_InMenu_Description"
 msgid "Frame rate limit when in the menu. Set this lower for a more consistent frame rate or higher for the best experience on faster machines. You may need to disable Vsync to reach high frame rates."
 msgstr "Limite de quadros por segundo ao usar o menu. Reduza este valor para obter uma taxa de quadros por segundo mais consistente ou aumente-o para otimizar sua experiência em máquinas mais rápidas. Talvez você tenha que desabilitar o Vsync para atingir valores maiores de quadros por segundo."
 
 #. Key:	FrameRateLimit_WhenBackgrounded_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(665)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(665)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(879)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(879)
 msgctxt "Lyra,FrameRateLimit_WhenBackgrounded_Name"
 msgid "Frame Rate Limit (Background)"
 msgstr "Limite de quadros por segundo (segundo plano)"
 
 #. Key:	FrameRateLimit_WhenBackgrounded_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(666)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(666)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(880)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(880)
 msgctxt "Lyra,FrameRateLimit_WhenBackgrounded_Description"
 msgid "Frame rate limit when in the background. Set this lower for a more consistent frame rate or higher for the best experience on faster machines. You may need to disable Vsync to reach high frame rates."
 msgstr "Limite de quadros por segundo quando em segundo plano. Reduza este valor para obter uma taxa de quadros por segundo mais consistente ou aumente-o para otimizar sua experiência em máquinas mais rápidas. Talvez você tenha que desabilitar o Vsync para atingir valores maiores de quadros por segundo."
 
 #. Key:	FrameRateLimit_Always_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(681)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(681)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(895)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(895)
 msgctxt "Lyra,FrameRateLimit_Always_Name"
 msgid "Frame Rate Limit"
 msgstr "Limite de quadros por segundo"
 
 #. Key:	FrameRateLimit_Always_Description
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(682)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(682)
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(896)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(896)
 msgctxt "Lyra,FrameRateLimit_Always_Description"
 msgid "Frame rate limit sets the highest frame rate that is allowed. Set this lower for a more consistent frame rate or higher for the best experience on faster machines. You may need to disable Vsync to reach high frame rates."
 msgstr "O limite de quadros por segundo estabelece o máximo de quadros por segundo permitidos. Reduza este valor para obter uma taxa de quadros por segundo mais consistente ou aumente-o para otimizar sua experiência em máquinas mais rápidas. Talvez você tenha que desabilitar o Vsync para atingir valores maiores de quadros por segundo."
 
-#. Key:	VideoCollection_Name
-#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(99)
-#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(99)
-msgctxt "Lyra,VideoCollection_Name"
-msgid "Video"
-msgstr "Vídeo"
+#. Key:	DynamicResolution_Name
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(911)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(911)
+msgctxt "Lyra,DynamicResolution_Name"
+msgid "Dynamic Resolution"
+msgstr ""
+
+#. Key:	DynamicResolution_Description
+#. SourceLocation:	Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(912)
+#: Source/LyraGame/Settings/LyraGameSettingRegistry_Video.cpp(912)
+msgctxt "Lyra,DynamicResolution_Description"
+msgid "Enabling Dynamic Resolution will allow internal rendering resolution to dynamically scale while trying to keep the selected target frame rate."
+msgstr ""
 
 #. Key:	SafeZone_KeyToPress_Gamepad
 #. SourceLocation:	Source/LyraGame/Settings/Screens/LyraBrightnessEditor.cpp(85)

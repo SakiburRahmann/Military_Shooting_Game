@@ -7,7 +7,6 @@
 #include "GameFramework/Character.h"
 #include "LyraCameraComponent.h"
 #include "LyraPlayerCameraManager.h"
-#include "Character/LyraHeroComponent.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(LyraCameraMode)
 
@@ -56,37 +55,11 @@ ULyraCameraMode::ULyraCameraMode()
 	ViewPitchMin = LYRA_CAMERA_DEFAULT_PITCH_MIN;
 	ViewPitchMax = LYRA_CAMERA_DEFAULT_PITCH_MAX;
 
-	bUseFirstPersonCamera = false;
-
 	BlendTime = 0.5f;
 	BlendFunction = ELyraCameraModeBlendFunction::EaseOut;
 	BlendExponent = 4.0f;
 	BlendAlpha = 1.0f;
 	BlendWeight = 1.0f;
-}
-
-bool ULyraCameraMode::ShouldUseFirstPersonCamera() const
-{
-	if (bUseFirstPersonCamera)
-	{
-		return true;
-	}
-
-	if (const AActor* TargetActor = GetTargetActor())
-	{
-		if (const APawn* TargetPawn = Cast<APawn>(TargetActor))
-		{
-			if (const ULyraHeroComponent* HeroComp = TargetPawn->FindComponentByClass<ULyraHeroComponent>())
-			{
-				if (HeroComp->IsInFirstPersonMode())
-				{
-					return true;
-				}
-			}
-		}
-	}
-	
-	return false;
 }
 
 ULyraCameraComponent* ULyraCameraMode::GetLyraCameraComponent() const
@@ -113,27 +86,7 @@ FVector ULyraCameraMode::GetPivotLocation() const
 
 	if (const APawn* TargetPawn = Cast<APawn>(TargetActor))
 	{
-		// True First Person: Attach to head socket!
-		if (ShouldUseFirstPersonCamera())
-		{
-			if (const ACharacter* TargetCharacter = Cast<ACharacter>(TargetPawn))
-			{
-				if (USkeletalMeshComponent* Mesh = TargetCharacter->GetMesh())
-				{
-					if (Mesh->DoesSocketExist(FName("head")))
-					{
-						// Get exact bone location of the head
-						// We only take the location. We avoid using the bone's forward vector because 
-						// bone axes are often aligned differently (e.g. Y might be forward instead of X).
-						FVector HeadLoc = Mesh->GetSocketLocation(FName("head"));
-						// We can optionally add a small Z offset if the pivot is exactly in the center of the neck.
-						return HeadLoc; 
-					}
-				}
-			}
-		}
-
-		// Height adjustments for characters to account for crouching (Fallback)
+		// Height adjustments for characters to account for crouching.
 		if (const ACharacter* TargetCharacter = Cast<ACharacter>(TargetPawn))
 		{
 			const ACharacter* TargetCharacterCDO = TargetCharacter->GetClass()->GetDefaultObject<ACharacter>();
@@ -165,10 +118,6 @@ FRotator ULyraCameraMode::GetPivotRotation() const
 
 	if (const APawn* TargetPawn = Cast<APawn>(TargetActor))
 	{
-		// Use the Pawn's View Rotation (which is driven by the player's mouse/controller).
-		// We DO NOT use the head bone's raw rotation because skeletal bones often have
-		// different coordinate alignments (e.g., Y or Z might be forward), which causes
-		// the camera to look completely sideways or upside down.
 		return TargetPawn->GetViewRotation();
 	}
 

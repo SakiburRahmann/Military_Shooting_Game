@@ -1,17 +1,28 @@
-# Unreal Engine 5 GitIgnore
+# Unreal Engine generated folders
 Binaries/
-Build/
 DerivedDataCache/
 Intermediate/
 Saved/
-.vscode/
 .vs/
 *.VC.db
-*.opensdf
-*.opendb
-*.sdf
+*.VC.opendb
 *.sln
 *.suo
-*.xcodeproj
-*.xcworkspace
-*.manifest
+*.sdf
+*.opensdf
+*.VC.VC.opendb
+
+# Build artifacts
+*.pdb
+*.ipdb
+*.iobj
+*.ipdb
+Target.cs.bak
+
+# Crash logs
+Crashes/
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store

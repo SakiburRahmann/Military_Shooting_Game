@@ -40,6 +40,7 @@ namespace LyraHero
 
 const FName ULyraHeroComponent::NAME_BindInputsNow("BindInputsNow");
 const FName ULyraHeroComponent::NAME_ActorFeatureName("Hero");
+TMap<TWeakObjectPtr<AController>, bool> ULyraHeroComponent::CameraPreferenceByController;
 
 ULyraHeroComponent::ULyraHeroComponent(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -54,6 +55,10 @@ ULyraHeroComponent::ULyraHeroComponent(const FObjectInitializer& ObjectInitializ
 	if (ThirdPersonFinder.Succeeded())
 	{
 		ThirdPersonCameraModeClass = ThirdPersonFinder.Class;
+	}
+	else
+	{
+		UE_LOG(LogLyra, Warning, TEXT("[Hero] ThirdPerson camera /Game/Characters/Cameras/CM_ThirdPerson not found; 3P toggle falls back to pawn default"));
 	}
 }
 
@@ -176,11 +181,31 @@ void ULyraHeroComponent::HandleChangeInitState(UGameFrameworkComponentManager* M
 			// The ability system component and attribute sets live on the player state.
 			PawnExtComp->InitializeAbilitySystem(LyraPS->GetLyraAbilitySystemComponent(), LyraPS);
 
-			// Fresh pawn (spawn or respawn): release a possibly stuck ADS input so a
-			// death held mid-aim can't leave aim-down-sights active forever.
+			// Fresh pawn (spawn or respawn): release possibly stuck weapon inputs so
+			// death held mid-aim/fire can't leave ADS active or firing forever.
+			// Note: ASC lives on the PlayerState and persists across pawns; this
+			// client-side release pairs with the server clearing the ability on death.
 			if (ULyraAbilitySystemComponent* FreshASC = PawnExtComp->GetLyraAbilitySystemComponent())
 			{
-				FreshASC->AbilityInputTagReleased(FGameplayTag::RequestGameplayTag(TEXT("InputTag.Weapon.ADS")));
+				const FGameplayTag ADSTag = FGameplayTag::RequestGameplayTag(TEXT("InputTag.Weapon.ADS"), false);
+				if (ADSTag.IsValid())
+				{
+					FreshASC->AbilityInputTagReleased(ADSTag);
+				}
+				const FGameplayTag FireTag = FGameplayTag::RequestGameplayTag(TEXT("InputTag.Weapon.Fire"), false);
+				if (FireTag.IsValid())
+				{
+					FreshASC->AbilityInputTagReleased(FireTag);
+				}
+			}
+			// A new pawn means a new HeroComponent (bInFirstPersonMode resets true).
+			// Restore the controller's last perspective choice instead.
+			if (AController* C = GetController<AController>())
+			{
+				if (const bool* Saved = CameraPreferenceByController.Find(C))
+				{
+					bInFirstPersonMode = *Saved;
+				}
 			}
 		}
 
@@ -237,6 +262,19 @@ void ULyraHeroComponent::BeginPlay()
 
 void ULyraHeroComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
+	if (APawn* Pawn = GetPawn<APawn>())
+	{
+		if (Pawn->InputComponent)
+		{
+			Pawn->InputComponent->ClearBindingsForObject(this);
+		}
+		bVFallbackBound = false;
+		if (ULyraCameraComponent* CameraComponent = ULyraCameraComponent::FindCameraComponent(Pawn))
+		{
+			CameraComponent->DetermineCameraModeDelegate.Unbind();
+		}
+	}
+
 	UnregisterInitStateFeature();
 
 	Super::EndPlay(EndPlayReason);
@@ -307,21 +345,28 @@ void ULyraHeroComponent::InitializePlayerInput(UInputComponent* PlayerInputCompo
 					LyraIC->BindNativeAction(InputConfig, LyraGameplayTags::InputTag_Look_Stick, ETriggerEvent::Triggered, this, &ThisClass::Input_LookStick, /*bLogIfNotFound=*/ false);
 					LyraIC->BindNativeAction(InputConfig, LyraGameplayTags::InputTag_Crouch, ETriggerEvent::Triggered, this, &ThisClass::Input_Crouch, /*bLogIfNotFound=*/ false);
 					LyraIC->BindNativeAction(InputConfig, LyraGameplayTags::InputTag_AutoRun, ETriggerEvent::Triggered, this, &ThisClass::Input_AutoRun, /*bLogIfNotFound=*/ false);
+					LyraIC->BindNativeAction(InputConfig, LyraGameplayTags::InputTag_ToggleCamera, ETriggerEvent::Started, this, &ThisClass::Input_ToggleCamera, /*bLogIfNotFound=*/ false);
+
+					bToggleCameraBoundViaInputConfig = (InputConfig->FindNativeInputActionForTag(LyraGameplayTags::InputTag_ToggleCamera, false) != nullptr);
 				}
 			}
 		}
 	}
 
-	if (ensure(!bReadyToBindInputs))
-	{
-		bReadyToBindInputs = true;
-	}
- 
+	bReadyToBindInputs = true;
+
 	UGameFrameworkComponentManager::SendGameFrameworkComponentExtensionEvent(const_cast<APlayerController*>(PC), NAME_BindInputsNow);
 	UGameFrameworkComponentManager::SendGameFrameworkComponentExtensionEvent(const_cast<APawn*>(Pawn), NAME_BindInputsNow);
 
-	// Bind 'V' key to toggle between First Person and Third Person camera modes
-	PlayerInputComponent->BindKey(EKeys::V, IE_Pressed, this, &ThisClass::ToggleCameraMode);
+	// V fallback only when InputData_Hero does not map InputTag.ToggleCamera.
+	// BindKey stacks across re-inits (ClearAllMappings does not remove legacy
+	// binds), so bind at most once per component; EndPlay clears it.
+	if (PlayerInputComponent && !bToggleCameraBoundViaInputConfig && !bVFallbackBound)
+	{
+		UE_LOG(LogLyra, Log, TEXT("[Hero] InputTag.ToggleCamera not in InputConfig; using V fallback"));
+		PlayerInputComponent->BindKey(EKeys::V, IE_Pressed, this, &ThisClass::ToggleCameraMode);
+		bVFallbackBound = true;
+	}
 }
 
 void ULyraHeroComponent::AddAdditionalInputConfig(const ULyraInputConfig* InputConfig)
@@ -349,6 +394,11 @@ void ULyraHeroComponent::AddAdditionalInputConfig(const ULyraInputConfig* InputC
 		if (ensureMsgf(LyraIC, TEXT("Unexpected Input Component class! The Gameplay Abilities will not be bound to their inputs. Change the input component to ULyraInputComponent or a subclass of it.")))
 		{
 			LyraIC->BindAbilityActions(InputConfig, this, &ThisClass::Input_AbilityInputTagPressed, &ThisClass::Input_AbilityInputTagReleased, /*out*/ BindHandles);
+			if (!bToggleCameraBoundViaInputConfig && InputConfig->FindNativeInputActionForTag(LyraGameplayTags::InputTag_ToggleCamera, false))
+			{
+				LyraIC->BindNativeAction(InputConfig, LyraGameplayTags::InputTag_ToggleCamera, ETriggerEvent::Started, this, &ThisClass::Input_ToggleCamera, /*bLogIfNotFound=*/ false);
+				bToggleCameraBoundViaInputConfig = true;
+			}
 		}
 	}
 }
@@ -491,18 +541,31 @@ void ULyraHeroComponent::Input_AutoRun(const FInputActionValue& InputActionValue
 	}
 }
 
+void ULyraHeroComponent::Input_ToggleCamera(const FInputActionValue& InputActionValue)
+{
+	ToggleCameraMode();
+}
+
 TSubclassOf<ULyraCameraMode> ULyraHeroComponent::DetermineCameraMode() const
 {
+	// Policy: the camera always stays in the player's current perspective family.
+	// FP + non-FP ability cam -> FP ADS stand-in (no shoulder yank).
+	// 3P + FP ability cam -> fall through to the 3P default (no FP yank).
 	if (AbilityCameraMode)
 	{
-		// While in first person, any non-FP ability camera (e.g. the ADS zoom)
-		// stays first person instead of yanking the view over the shoulder.
 		const bool bAbilityCamIsFP = AbilityCameraMode->IsChildOf(ULyraCameraMode_FirstPerson::StaticClass());
 		if (bInFirstPersonMode && !bAbilityCamIsFP && FirstPersonADSModeClass)
 		{
 			return FirstPersonADSModeClass;
 		}
-		return AbilityCameraMode;
+		if (!bInFirstPersonMode && bAbilityCamIsFP)
+		{
+			// fall through to third-person default below
+		}
+		else
+		{
+			return AbilityCameraMode;
+		}
 	}
 
 	if (bInFirstPersonMode && FirstPersonCameraModeClass)
@@ -513,7 +576,7 @@ TSubclassOf<ULyraCameraMode> ULyraHeroComponent::DetermineCameraMode() const
 	const APawn* Pawn = GetPawn<APawn>();
 	if (!Pawn)
 	{
-		return nullptr;
+		return FirstPersonCameraModeClass;
 	}
 
 	if (ULyraPawnExtensionComponent* PawnExtComp = ULyraPawnExtensionComponent::FindPawnExtensionComponent(Pawn))
@@ -535,36 +598,63 @@ TSubclassOf<ULyraCameraMode> ULyraHeroComponent::DetermineCameraMode() const
 		return ThirdPersonCameraModeClass;
 	}
 
+	if (!bInFirstPersonMode)
+	{
+		UE_LOG(LogLyra, Warning, TEXT("[Hero] No third-person camera available; staying first person"));
+	}
 	return FirstPersonCameraModeClass;
 }
 
 void ULyraHeroComponent::ToggleCameraMode()
 {
 	bInFirstPersonMode = !bInFirstPersonMode;
-
-	if (APawn* Pawn = GetPawn<APawn>())
+	if (AController* C = GetController<AController>())
 	{
-		if (ACharacter* Character = Cast<ACharacter>(Pawn))
-		{
-			// Shooter style in both views: the body always faces the camera so
-			// strafing plays strafe locomotion instead of turning the whole body.
-			Character->bUseControllerRotationYaw = true;
-		}
+		CameraPreferenceByController.Add(C, bInFirstPersonMode);
 	}
+	// ALyraCharacter already uses bUseControllerRotationYaw=true in both views,
+	// and UpdateCameraModes() re-evaluates DetermineCameraMode every frame,
+	// so no manual camera refresh is needed here.
 }
 
 void ULyraHeroComponent::SetAbilityCameraMode(TSubclassOf<ULyraCameraMode> CameraMode, const FGameplayAbilitySpecHandle& OwningSpecHandle)
 {
-	if (CameraMode)
+	if (!CameraMode)
 	{
-		AbilityCameraMode = CameraMode;
-		AbilityCameraModeOwningSpecHandle = OwningSpecHandle;
+		return;
 	}
+	for (const FAbilityCameraEntry& Entry : AbilityCameraStack)
+	{
+		if (Entry.OwningSpecHandle == OwningSpecHandle)
+		{
+			return;
+		}
+	}
+	if (!AbilityCameraStack.IsEmpty())
+	{
+		UE_LOG(LogLyra, Verbose, TEXT("[Hero] Ability camera stack depth %d; pushing over existing"), AbilityCameraStack.Num());
+	}
+	AbilityCameraStack.Add({ CameraMode, OwningSpecHandle });
+	AbilityCameraMode = CameraMode;
+	AbilityCameraModeOwningSpecHandle = OwningSpecHandle;
 }
 
 void ULyraHeroComponent::ClearAbilityCameraMode(const FGameplayAbilitySpecHandle& OwningSpecHandle)
 {
-	if (AbilityCameraModeOwningSpecHandle == OwningSpecHandle)
+	for (int32 i = AbilityCameraStack.Num() - 1; i >= 0; --i)
+	{
+		if (AbilityCameraStack[i].OwningSpecHandle == OwningSpecHandle)
+		{
+			AbilityCameraStack.RemoveAt(i);
+			break;
+		}
+	}
+	if (!AbilityCameraStack.IsEmpty())
+	{
+		AbilityCameraMode = AbilityCameraStack.Last().CameraMode;
+		AbilityCameraModeOwningSpecHandle = AbilityCameraStack.Last().OwningSpecHandle;
+	}
+	else
 	{
 		AbilityCameraMode = nullptr;
 		AbilityCameraModeOwningSpecHandle = FGameplayAbilitySpecHandle();

@@ -6,6 +6,10 @@
 #include "LyraCameraMode_FirstPerson.generated.h"
 
 class UUserWidget;
+class APlayerController;
+class ULyraHealthComponent;
+class USkeletalMesh;
+class USkeletalMeshComponent;
 
 /**
  * ULyraCameraMode_FirstPerson
@@ -24,10 +28,15 @@ public:
 
 	ULyraCameraMode_FirstPerson();
 
+	float GetEyeForwardOffset() const { return EyeForwardOffset; }
+	float GetEyeUpOffset() const { return EyeUpOffset; }
+	float GetHipFieldOfView() const { return FieldOfView; }
+
 protected:
 
-	virtual void OnActivation() override;
 	virtual void UpdateView(float DeltaTime) override;
+	void PreventHeadPenetration(const AActor* TargetActor, const FVector& SafeLoc, FVector& CameraLoc) const;
+	bool IsTargetDeadOrDying(const ACharacter* TargetCharacter) const;
 
 protected:
 
@@ -36,12 +45,25 @@ protected:
 	FName HeadBoneName = TEXT("head");
 
 	// Eye offset from the head joint, applied along the look direction.
-	UPROPERTY(EditDefaultsOnly, Category = "First Person")
+	UPROPERTY(EditDefaultsOnly, Category = "First Person", Meta = (ClampMin = "0.0", UIMin = "0.0", UIMax = "30.0"))
 	float EyeForwardOffset = 12.0f;
 
 	// Eye offset above the head joint.
-	UPROPERTY(EditDefaultsOnly, Category = "First Person")
+	UPROPERTY(EditDefaultsOnly, Category = "First Person", Meta = (ClampMin = "0.0", UIMin = "0.0", UIMax = "30.0"))
 	float EyeUpOffset = 5.0f;
+
+	// Wall-clip probe radius.
+	UPROPERTY(EditDefaultsOnly, Category = "First Person", Meta = (ClampMin = "1.0", UIMin = "1.0", UIMax = "20.0"))
+	float PenetrationProbeRadius = 8.0f;
+
+private:
+
+	mutable TWeakObjectPtr<const USkeletalMeshComponent> CachedHeadMesh;
+	mutable TWeakObjectPtr<const USkeletalMesh> CachedHeadSkeletalMesh;
+	mutable int32 CachedHeadBoneIndex = INDEX_NONE;
+	mutable FName CachedHeadBoneName;
+	mutable TWeakObjectPtr<const ULyraHealthComponent> CachedHealthComp;
+	mutable TWeakObjectPtr<const ACharacter> CachedHealthPawn;
 };
 
 
@@ -65,17 +87,30 @@ protected:
 	virtual void UpdateView(float DeltaTime) override;
 	virtual void OnActivation() override;
 	virtual void OnDeactivation() override;
+	virtual void BeginDestroy() override;
 
-	// Shows/hides the ADS crosshair overlay.
-	void SetADSCrosshairVisible(bool bVisible) const;
-	// Hides the owner's body + held weapon (owner-only, others still see you).
+	void SetADSCrosshairVisible(bool bVisible);
 	void SetADSFirstPersonMeshesHidden(bool bHidden);
+	void RestoreADSState();
+	void CleanupScopeWidget();
+	bool ValidateScopeWidget(APlayerController* PC) const;
+	void HideNewPawnMeshes(ACharacter* TargetCharacter);
 
 protected:
 
-	// Crosshair overlay widget shown while aiming.
 	UPROPERTY(EditDefaultsOnly, Category = "First Person ADS")
 	TSubclassOf<UUserWidget> CrosshairWidgetClass;
+
+	UPROPERTY(Transient)
+	TObjectPtr<UUserWidget> ActiveScopeWidget = nullptr;
+
+	UPROPERTY(Transient)
+	TWeakObjectPtr<APlayerController> OwningPC;
+
+	UPROPERTY(EditDefaultsOnly, Category = "First Person ADS")
+	float HipFieldOfView = 90.0f;
+
+	bool bMeshesHidden = false;
 
 private:
 

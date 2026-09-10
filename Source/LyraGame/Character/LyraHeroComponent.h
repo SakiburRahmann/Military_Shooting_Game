@@ -94,6 +94,7 @@ protected:
 	UE_API void Input_LookStick(const FInputActionValue& InputActionValue);
 	UE_API void Input_Crouch(const FInputActionValue& InputActionValue);
 	UE_API void Input_AutoRun(const FInputActionValue& InputActionValue);
+	UE_API void Input_ToggleCamera(const FInputActionValue& InputActionValue);
 
 	UE_API TSubclassOf<ULyraCameraMode> DetermineCameraMode() const;
 
@@ -102,12 +103,22 @@ protected:
 	UPROPERTY(EditAnywhere)
 	TArray<FInputMappingContextAndPriority> DefaultInputMappings;
 	
-	/** Camera mode set by an ability. */
+	/** Camera modes pushed by abilities (stack; top wins). */
+	struct FAbilityCameraEntry
+	{
+		TSubclassOf<ULyraCameraMode> CameraMode;
+		FGameplayAbilitySpecHandle OwningSpecHandle;
+	};
+	TArray<FAbilityCameraEntry> AbilityCameraStack;
+
+	/** Camera mode set by an ability (top of AbilityCameraStack, kept for debugging). */
 	UPROPERTY()
 	TSubclassOf<ULyraCameraMode> AbilityCameraMode;
 
 	/** Spec handle for the last ability to set a camera mode. */
 	FGameplayAbilitySpecHandle AbilityCameraModeOwningSpecHandle;
+
+	static TMap<TWeakObjectPtr<AController>, bool> CameraPreferenceByController;
 
 	/** The camera mode class to use for first person view */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Lyra|Hero")
@@ -126,6 +137,9 @@ protected:
 	/** If true, the camera defaults to first person mode (toggle with V) */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Lyra|Hero")
 	bool bInFirstPersonMode = true;
+
+	bool bToggleCameraBoundViaInputConfig = false;
+	bool bVFallbackBound = false;
 
 	/** True when player input bindings have been applied, will never be true for non - players */
 	bool bReadyToBindInputs;

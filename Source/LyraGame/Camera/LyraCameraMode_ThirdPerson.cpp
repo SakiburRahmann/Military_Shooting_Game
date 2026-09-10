@@ -37,32 +37,7 @@ void ULyraCameraMode_ThirdPerson::UpdateView(float DeltaTime)
 	UpdateForTarget(DeltaTime);
 	UpdateCrouchOffset(DeltaTime);
 
-	bool bIsFirstPerson = ShouldUseFirstPersonCamera();
-	if (bIsFirstPerson)
-	{
-		// Double check that the mesh actually has a head socket
-		if (const APawn* TargetPawn = Cast<APawn>(GetTargetActor()))
-		{
-			if (const ACharacter* TargetCharacter = Cast<ACharacter>(TargetPawn))
-			{
-				if (USkeletalMeshComponent* Mesh = TargetCharacter->GetMesh())
-				{
-					if (!Mesh->DoesSocketExist(FName("head")))
-					{
-						bIsFirstPerson = false;
-					}
-				}
-			}
-		}
-	}
-
-	FVector PivotLocation = GetPivotLocation();
-	
-	if (!bIsFirstPerson)
-	{
-		PivotLocation += CurrentCrouchOffset;
-	}
-
+	FVector PivotLocation = GetPivotLocation() + CurrentCrouchOffset;
 	FRotator PivotRotation = GetPivotRotation();
 
 	PivotRotation.Pitch = FMath::ClampAngle(PivotRotation.Pitch, ViewPitchMin, ViewPitchMax);
@@ -72,27 +47,24 @@ void ULyraCameraMode_ThirdPerson::UpdateView(float DeltaTime)
 	View.ControlRotation = View.Rotation;
 	View.FieldOfView = FieldOfView;
 
-	if (!bIsFirstPerson)
+	// Apply third person offset using pitch.
+	if (!bUseRuntimeFloatCurves)
 	{
-		// Apply third person offset using pitch.
-		if (!bUseRuntimeFloatCurves)
+		if (TargetOffsetCurve)
 		{
-			if (TargetOffsetCurve)
-			{
-				const FVector TargetOffset = TargetOffsetCurve->GetVectorValue(PivotRotation.Pitch);
-				View.Location = PivotLocation + PivotRotation.RotateVector(TargetOffset);
-			}
-		}
-		else
-		{
-			FVector TargetOffset(0.0f);
-
-			TargetOffset.X = TargetOffsetX.GetRichCurveConst()->Eval(PivotRotation.Pitch);
-			TargetOffset.Y = TargetOffsetY.GetRichCurveConst()->Eval(PivotRotation.Pitch);
-			TargetOffset.Z = TargetOffsetZ.GetRichCurveConst()->Eval(PivotRotation.Pitch);
-
+			const FVector TargetOffset = TargetOffsetCurve->GetVectorValue(PivotRotation.Pitch);
 			View.Location = PivotLocation + PivotRotation.RotateVector(TargetOffset);
 		}
+	}
+	else
+	{
+		FVector TargetOffset(0.0f);
+
+		TargetOffset.X = TargetOffsetX.GetRichCurveConst()->Eval(PivotRotation.Pitch);
+		TargetOffset.Y = TargetOffsetY.GetRichCurveConst()->Eval(PivotRotation.Pitch);
+		TargetOffset.Z = TargetOffsetZ.GetRichCurveConst()->Eval(PivotRotation.Pitch);
+
+		View.Location = PivotLocation + PivotRotation.RotateVector(TargetOffset);
 	}
 
 	// Adjust final desired camera location to prevent any penetration

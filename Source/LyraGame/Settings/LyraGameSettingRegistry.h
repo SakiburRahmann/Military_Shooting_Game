@@ -61,6 +61,7 @@ protected:
 
 	UGameSettingCollection* InitializeMouseAndKeyboardSettings(ULyraLocalPlayer* InLocalPlayer);
 	UGameSettingCollection* InitializeGamepadSettings(ULyraLocalPlayer* InLocalPlayer);
+	UGameSettingCollection* InitializeSoldierSettings(ULyraLocalPlayer* InLocalPlayer);
 
 	void AddDLCPage(UGameSettingCollection* Screen, ULyraLocalPlayer* InLocalPlayer);
 
@@ -78,6 +79,9 @@ protected:
 
 	UPROPERTY()
 	TObjectPtr<UGameSettingCollection> GamepadSettings;
+
+	UPROPERTY()
+	TObjectPtr<UGameSettingCollection> SoldierSettings;
 
 	FTSTicker::FDelegateHandle DLCTickHandle;
 };

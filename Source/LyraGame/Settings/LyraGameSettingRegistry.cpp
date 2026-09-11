@@ -70,6 +70,9 @@ void ULyraGameSettingRegistry::OnInitialize(ULocalPlayer* InLocalPlayer)
 
 	GamepadSettings = InitializeGamepadSettings(LyraLocalPlayer);
 	RegisterSetting(GamepadSettings);
+
+	SoldierSettings = InitializeSoldierSettings(LyraLocalPlayer);
+	RegisterSetting(SoldierSettings);
 }
 
 void ULyraGameSettingRegistry::SaveChanges()

@@ -32,11 +32,19 @@ public:
 	float GetEyeUpOffset() const { return EyeUpOffset; }
 	float GetHipFieldOfView() const { return FieldOfView; }
 
+public:
+
+	virtual void OnDeactivation() override;
+	virtual void BeginDestroy() override;
+	static void ForceRestoreFPHeadForPawn(AActor* Pawn);
+
 protected:
 
 	virtual void UpdateView(float DeltaTime) override;
 	void PreventHeadPenetration(const AActor* TargetActor, const FVector& SafeLoc, FVector& CameraLoc) const;
 	bool IsTargetDeadOrDying(const ACharacter* TargetCharacter) const;
+	void EnsureFPHeadHidden(ACharacter* TargetCharacter);
+	void RestoreFPHead();
 
 protected:
 
@@ -64,6 +72,8 @@ private:
 	mutable FName CachedHeadBoneName;
 	mutable TWeakObjectPtr<const ULyraHealthComponent> CachedHealthComp;
 	mutable TWeakObjectPtr<const ACharacter> CachedHealthPawn;
+	TWeakObjectPtr<AActor> FPHeadHideTarget;
+	bool bFPHeadAcquired = false;
 };
 
 

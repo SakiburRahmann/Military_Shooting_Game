@@ -6,7 +6,7 @@
 #include "ModularPlayerState.h"
 #include "System/GameplayTagStack.h"
 #include "Teams/LyraTeamAgentInterface.h"
-
+#include "Cosmetics/LyraSoldierLoadout.h"
 #include "LyraPlayerState.generated.h"
 
 #define UE_API LYRAGAME_API
@@ -134,6 +134,17 @@ public:
 	// Sets the replicated view rotation, only valid on the server
 	UE_API void SetReplicatedViewRotation(const FRotator& NewRotation);
 
+	// Soldier appearance chosen by this player (replicated to everyone)
+	UFUNCTION(BlueprintPure, Category = "Soldier")
+	FLyraSoldierLoadout GetSoldierLoadout() const { return SoldierLoadout; }
+
+	// Client pushes its saved loadout to the server (re-applied to the pawn)
+	UFUNCTION(Server, Reliable, BlueprintCallable, Category = "Soldier")
+	UE_API void ServerSetSoldierLoadout(const FLyraSoldierLoadout& NewLoadout);
+
+	// Authority-side direct set (bots, defaults)
+	UE_API void SetSoldierLoadoutDirect(const FLyraSoldierLoadout& NewLoadout);
+
 private:
 	UE_API void OnExperienceLoaded(const ULyraExperienceDefinition* CurrentExperience);
 
@@ -176,6 +187,13 @@ private:
 
 	UPROPERTY(Replicated)
 	FRotator ReplicatedViewRotation;
+
+	UPROPERTY(ReplicatedUsing = OnRep_SoldierLoadout)
+	FLyraSoldierLoadout SoldierLoadout;
+
+private:
+	UFUNCTION()
+	UE_API void OnRep_SoldierLoadout();
 
 private:
 	UFUNCTION()

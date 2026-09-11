@@ -20,6 +20,12 @@
 #include "PlayerMappableInputConfig.h"
 #include "Camera/LyraCameraMode.h"
 #include "Camera/LyraCameraMode_FirstPerson.h"
+#include "Cosmetics/LyraCharacterPartTypes.h"
+#include "Cosmetics/LyraControllerComponent_CharacterParts.h"
+#include "Cosmetics/LyraPawnComponent_CharacterParts.h"
+#include "Cosmetics/LyraSoldierLoadout.h"
+#include "Cosmetics/LyraSoldierPartActor.h"
+#include "Settings/LyraSettingsLocal.h"
 #include "GameplayTagContainer.h"
 #include "UserSettings/EnhancedInputUserSettings.h"
 #include "InputMappingContext.h"
@@ -198,6 +204,21 @@ void ULyraHeroComponent::HandleChangeInitState(UGameFrameworkComponentManager* M
 					FreshASC->AbilityInputTagReleased(FireTag);
 				}
 			}
+
+			// Push the local player's saved soldier appearance to the server.
+			if (Pawn->IsLocallyControlled() && !Pawn->IsBotControlled())
+			{
+				if (ALyraPlayerState* PS = GetPlayerState<ALyraPlayerState>())
+				{
+					if (const ULyraSettingsLocal* LocalSettings = GetDefault<ULyraSettingsLocal>())
+					{
+						PS->ServerSetSoldierLoadout(LocalSettings->GetSoldierLoadout());
+					}
+				}
+			}
+
+			// Server dresses the pawn in the soldier loadout (replaces Manny/Quinn).
+			ApplySoldierLoadout();
 			// A new pawn means a new HeroComponent (bInFirstPersonMode resets true).
 			// Restore the controller's last perspective choice instead.
 			if (AController* C = GetController<AController>())
@@ -223,6 +244,15 @@ void ULyraHeroComponent::HandleChangeInitState(UGameFrameworkComponentManager* M
 			if (ULyraCameraComponent* CameraComponent = ULyraCameraComponent::FindCameraComponent(Pawn))
 			{
 				CameraComponent->DetermineCameraModeDelegate.BindUObject(this, &ThisClass::DetermineCameraMode);
+			}
+		}
+
+		// Re-tint + enforce soldier-only body whenever parts change (spawn, swap, late stock grant).
+		if (ULyraPawnComponent_CharacterParts* PawnParts = Pawn->FindComponentByClass<ULyraPawnComponent_CharacterParts>())
+		{
+			if (!PawnParts->OnCharacterPartsChanged.IsAlreadyBound(this, &ThisClass::HandleCharacterPartsChanged))
+			{
+				PawnParts->OnCharacterPartsChanged.AddDynamic(this, &ThisClass::HandleCharacterPartsChanged);
 			}
 		}
 	}
@@ -272,6 +302,10 @@ void ULyraHeroComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 		if (ULyraCameraComponent* CameraComponent = ULyraCameraComponent::FindCameraComponent(Pawn))
 		{
 			CameraComponent->DetermineCameraModeDelegate.Unbind();
+		}
+		if (ULyraPawnComponent_CharacterParts* PawnParts = Pawn->FindComponentByClass<ULyraPawnComponent_CharacterParts>())
+		{
+			PawnParts->OnCharacterPartsChanged.RemoveDynamic(this, &ThisClass::HandleCharacterPartsChanged);
 		}
 	}
 
@@ -608,6 +642,13 @@ TSubclassOf<ULyraCameraMode> ULyraHeroComponent::DetermineCameraMode() const
 void ULyraHeroComponent::ToggleCameraMode()
 {
 	bInFirstPersonMode = !bInFirstPersonMode;
+	if (!bInFirstPersonMode)
+	{
+		if (APawn* P = GetPawn<APawn>())
+		{
+			ULyraCameraMode_FirstPerson::ForceRestoreFPHeadForPawn(P);
+		}
+	}
 	if (AController* C = GetController<AController>())
 	{
 		CameraPreferenceByController.Add(C, bInFirstPersonMode);
@@ -615,6 +656,188 @@ void ULyraHeroComponent::ToggleCameraMode()
 	// ALyraCharacter already uses bUseControllerRotationYaw=true in both views,
 	// and UpdateCameraModes() re-evaluates DetermineCameraMode every frame,
 	// so no manual camera refresh is needed here.
+}
+
+namespace LyraSoldier
+{
+	TSubclassOf<AActor> LoadPartClass(const TCHAR* Path)
+	{
+		UClass* Loaded = StaticLoadClass(AActor::StaticClass(), nullptr, Path);
+		if (!Loaded)
+		{
+			UE_LOG(LogLyra, Warning, TEXT("[Soldier] Missing part class %s"), Path);
+		}
+		return Loaded;
+	}
+
+	TSubclassOf<AActor> ResolveSlotPart(const FName& Slot, int32 Variant)
+	{
+		FString Path;
+		if (Slot == TEXT("Head"))
+		{
+			Path = FString::Printf(TEXT("/Game/Soldier/Parts/BP_A02_Head_%d.BP_A02_Head_%d_C"), Variant, Variant);
+		}
+		else if (Slot == TEXT("Chest"))
+		{
+			Path = FString::Printf(TEXT("/Game/Soldier/Parts/BP_A02_Chest_%d.BP_A02_Chest_%d_C"), Variant, Variant);
+		}
+		else if (Slot == TEXT("Hand"))
+		{
+			Path = FString::Printf(TEXT("/Game/Soldier/Parts/BP_A02_Hand_%d.BP_A02_Hand_%d_C"), Variant, Variant);
+		}
+		else if (Slot == TEXT("Leg"))
+		{
+			Path = FString::Printf(TEXT("/Game/Soldier/Parts/BP_A02_Leg_%d.BP_A02_Leg_%d_C"), Variant, Variant);
+		}
+		else if (Slot == TEXT("Foot"))
+		{
+			Path = FString::Printf(TEXT("/Game/Soldier/Parts/BP_A02_Foot_%d.BP_A02_Foot_%d_C"), Variant, Variant);
+		}
+		else if (Slot == TEXT("Helmet"))
+		{
+			Path = FString::Printf(TEXT("/Game/Soldier/Parts/BP_A02_Helmet_%d.BP_A02_Helmet_%d_C"), Variant, Variant);
+		}
+		if (Path.IsEmpty())
+		{
+			return nullptr;
+		}
+		return LoadPartClass(*Path);
+	}
+}
+
+void ULyraHeroComponent::ApplySoldierLoadout()
+{
+	APawn* Pawn = GetPawn<APawn>();
+	if (!Pawn || !Pawn->HasAuthority())
+	{
+		return;
+	}
+
+	ALyraPlayerState* LyraPS = GetPlayerState<ALyraPlayerState>();
+	FLyraSoldierLoadout Loadout = FLyraSoldierLoadout::MakeDefault();
+	if (LyraPS && !Pawn->IsBotControlled())
+	{
+		Loadout = LyraPS->GetSoldierLoadout();
+	}
+	else
+	{
+		// Bots (and enemies/friendlies) get randomized gear for variety.
+		Loadout.HeadVariant = FMath::RandRange(0, 3);
+		Loadout.ChestVariant = FMath::RandRange(1, 3);
+		Loadout.HandVariant = FMath::RandRange(1, 3);
+		Loadout.LegVariant = FMath::RandRange(1, 3);
+		Loadout.FootVariant = 1;
+		Loadout.HelmetVariant = FMath::RandRange(0, 3);
+		Loadout.UniformColorIndex = FMath::RandRange(0, 5);
+		// Mirror the random look to the bot's PlayerState so simulated
+		// instances tint the same uniform color.
+		if (LyraPS)
+		{
+			LyraPS->SetSoldierLoadoutDirect(Loadout);
+		}
+	}
+	Loadout.HeadVariant = FMath::Clamp(Loadout.HeadVariant, 0, 3);
+	Loadout.ChestVariant = FMath::Clamp(Loadout.ChestVariant, 1, 3);
+	Loadout.HandVariant = FMath::Clamp(Loadout.HandVariant, 1, 3);
+	Loadout.LegVariant = FMath::Clamp(Loadout.LegVariant, 1, 3);
+	Loadout.FootVariant = 1;
+	Loadout.HelmetVariant = FMath::Clamp(Loadout.HelmetVariant, 0, 3);
+
+	ULyraControllerComponent_CharacterParts* ControllerParts = nullptr;
+	if (AController* C = GetController<AController>())
+	{
+		ControllerParts = C->FindComponentByClass<ULyraControllerComponent_CharacterParts>();
+	}
+	if (!ControllerParts)
+	{
+		return;
+	}
+
+	RemoveStockBodyParts();
+
+	auto GrantSlot = [&](const FName& Slot, int32 Variant)
+	{
+		if (Variant <= 0 && Slot != TEXT("Head"))
+		{
+			return;
+		}
+		TSubclassOf<AActor> PartClass = LyraSoldier::ResolveSlotPart(Slot, Variant);
+		if (!PartClass)
+		{
+			return;
+		}
+		// Avoid duplicates if the same variant is already granted.
+		FLyraCharacterPart NewPart;
+		NewPart.PartClass = PartClass;
+		NewPart.SocketName = NAME_None;
+		NewPart.CollisionMode = ECharacterCustomizationCollisionMode::NoCollision;
+		ControllerParts->RemoveCharacterPart(NewPart);
+		ControllerParts->AddCharacterPart(NewPart);
+	};
+
+	GrantSlot(TEXT("Head"), Loadout.HeadVariant);
+	GrantSlot(TEXT("Chest"), Loadout.ChestVariant);
+	GrantSlot(TEXT("Hand"), Loadout.HandVariant);
+	GrantSlot(TEXT("Leg"), Loadout.LegVariant);
+	GrantSlot(TEXT("Foot"), Loadout.FootVariant);
+	if (Loadout.HelmetVariant > 0)
+	{
+		GrantSlot(TEXT("Helmet"), Loadout.HelmetVariant);
+	}
+
+	ApplySoldierUniformColor();
+}
+
+void ULyraHeroComponent::RemoveStockBodyParts()
+{
+	const APawn* Pawn = GetPawn<APawn>();
+	if (!Pawn || !Pawn->HasAuthority())
+	{
+		return;
+	}
+	ULyraControllerComponent_CharacterParts* ControllerParts = nullptr;
+	if (AController* C = GetController<AController>())
+	{
+		ControllerParts = C->FindComponentByClass<ULyraControllerComponent_CharacterParts>();
+	}
+	if (!ControllerParts)
+	{
+		return;
+	}
+
+	// Remove the stock random mannequin body so only the soldier shows.
+	// Idempotent: runs on init and on every parts change, so a late-arriving
+	// stock grant (e.g. B_PickRandomCharacter) is cleaned up as well.
+	for (const TCHAR* StockPath : { TEXT("/Game/Characters/Cosmetics/B_Manny.B_Manny_C"),
+		TEXT("/Game/Characters/Cosmetics/B_Quinn.B_Quinn_C") })
+	{
+		if (TSubclassOf<AActor> StockClass = LyraSoldier::LoadPartClass(StockPath))
+		{
+			FLyraCharacterPart StockPart;
+			StockPart.PartClass = StockClass;
+			StockPart.SocketName = NAME_None;
+			StockPart.CollisionMode = ECharacterCustomizationCollisionMode::NoCollision;
+			ControllerParts->RemoveCharacterPart(StockPart);
+		}
+	}
+}
+
+void ULyraHeroComponent::HandleCharacterPartsChanged(ULyraPawnComponent_CharacterParts* ComponentWithChangedParts)
+{
+	RemoveStockBodyParts();
+	ApplySoldierUniformColor();
+}
+
+void ULyraHeroComponent::ApplySoldierUniformColor() const
+{
+	// Authored colors only: the CR pack ships fully colored (uniform camo,
+	// skin, metal), so we never tint. Variants still swap via the loadout.
+	return;
+}
+
+void ULyraHeroComponent::RefreshSoldierUniformTint()
+{
+	ApplySoldierUniformColor();
 }
 
 void ULyraHeroComponent::SetAbilityCameraMode(TSubclassOf<ULyraCameraMode> CameraMode, const FGameplayAbilitySpecHandle& OwningSpecHandle)

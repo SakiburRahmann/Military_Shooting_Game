@@ -1706,3 +1706,16 @@ void ULyraSettingsLocal::UpdateDynamicResFrameTime(float TargetFPS)
 	}
 }
 
+
+FString ULyraSettingsLocal::GetSoldierHead() const { return FString::FromInt(SoldierLoadout.HeadVariant); }
+void ULyraSettingsLocal::SetSoldierHead(const FString& Value) { SoldierLoadout.HeadVariant = FMath::Clamp(FCString::Atoi(*Value), 0, 3); }
+FString ULyraSettingsLocal::GetSoldierChest() const { return FString::FromInt(SoldierLoadout.ChestVariant); }
+void ULyraSettingsLocal::SetSoldierChest(const FString& Value) { SoldierLoadout.ChestVariant = FMath::Clamp(FCString::Atoi(*Value), 1, 3); }
+FString ULyraSettingsLocal::GetSoldierHands() const { return FString::FromInt(SoldierLoadout.HandVariant); }
+void ULyraSettingsLocal::SetSoldierHands(const FString& Value) { SoldierLoadout.HandVariant = FMath::Clamp(FCString::Atoi(*Value), 1, 3); }
+FString ULyraSettingsLocal::GetSoldierLegs() const { return FString::FromInt(SoldierLoadout.LegVariant); }
+void ULyraSettingsLocal::SetSoldierLegs(const FString& Value) { SoldierLoadout.LegVariant = FMath::Clamp(FCString::Atoi(*Value), 1, 3); }
+FString ULyraSettingsLocal::GetSoldierHelmet() const { return FString::FromInt(SoldierLoadout.HelmetVariant); }
+void ULyraSettingsLocal::SetSoldierHelmet(const FString& Value) { SoldierLoadout.HelmetVariant = FMath::Clamp(FCString::Atoi(*Value), 0, 3); }
+FString ULyraSettingsLocal::GetSoldierUniform() const { return FString::FromInt(SoldierLoadout.UniformColorIndex); }
+void ULyraSettingsLocal::SetSoldierUniform(const FString& Value) { SoldierLoadout.UniformColorIndex = FMath::Clamp(FCString::Atoi(*Value), 0, 5); }

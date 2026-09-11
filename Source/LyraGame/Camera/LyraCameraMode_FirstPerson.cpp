@@ -9,6 +9,7 @@
 #include "GameFramework/PlayerController.h"
 #include "Blueprint/UserWidget.h"
 #include "Character/LyraHealthComponent.h"
+#include "Cosmetics/LyraSoldierPartActor.h"
 #include "Engine/World.h"
 #include "Engine/HitResult.h"
 #include "CollisionQueryParams.h"
@@ -17,6 +18,99 @@
 #include UE_INLINE_GENERATED_CPP_BY_NAME(LyraCameraMode_FirstPerson)
 
 static TMap<TWeakObjectPtr<APlayerController>, TWeakObjectPtr<UUserWidget>> GScopeWidgetsByPC;
+
+struct FFPHeadPawnState
+{
+	TMap<TWeakObjectPtr<UMeshComponent>, bool> Meshes;
+	TMap<TWeakObjectPtr<AActor>, TWeakObjectPtr<AActor>> Owners;
+	int32 RefCount = 0;
+};
+
+static TMap<TWeakObjectPtr<AActor>, FFPHeadPawnState> GFPHeadStates;
+
+static void FPHeadPrune()
+{
+	for (auto It = GFPHeadStates.CreateIterator(); It; ++It)
+	{
+		if (!It.Key().IsValid())
+		{
+			It.RemoveCurrent();
+		}
+	}
+}
+
+static void FPHeadApply(ACharacter* Pawn, FFPHeadPawnState& State)
+{
+	TArray<AActor*> AttachedActors;
+	Pawn->GetAttachedActors(AttachedActors, true, true);
+	for (AActor* PartActor : AttachedActors)
+	{
+		if (!PartActor || PartActor == Pawn)
+		{
+			continue;
+		}
+		bool bIsHeadGear = false;
+		if (const ALyraSoldierPartActor* SoldierPart = Cast<ALyraSoldierPartActor>(PartActor))
+		{
+			bIsHeadGear = (SoldierPart->PartSlot == ESoldierPartSlot::Head || SoldierPart->PartSlot == ESoldierPartSlot::Helmet);
+		}
+		if (!bIsHeadGear)
+		{
+			const FString ClassName = PartActor->GetClass()->GetName();
+			bIsHeadGear = ClassName.Contains(TEXT("Helmet")) || ClassName.Contains(TEXT("Head"));
+		}
+		if (!bIsHeadGear)
+		{
+			continue;
+		}
+		if (PartActor->GetOwner() != Pawn && !PartActor->GetIsReplicated())
+		{
+			if (!State.Owners.Contains(PartActor))
+			{
+				State.Owners.Add(PartActor, PartActor->GetOwner());
+			}
+			PartActor->SetOwner(Pawn);
+		}
+		TArray<UMeshComponent*> Meshes;
+		PartActor->GetComponents<UMeshComponent>(Meshes);
+		for (UMeshComponent* Mesh : Meshes)
+		{
+			if (Mesh && !State.Meshes.Contains(Mesh))
+			{
+				State.Meshes.Add(Mesh, Mesh->bOwnerNoSee ? true : false);
+			}
+			if (Mesh)
+			{
+				Mesh->SetOwnerNoSee(true);
+			}
+		}
+	}
+}
+
+static void FPHeadUnapply(ACharacter* Pawn, FFPHeadPawnState& State)
+{
+	for (auto& Pair : State.Meshes)
+	{
+		if (UMeshComponent* Mesh = Pair.Key.Get())
+		{
+			if (IsValid(Mesh))
+			{
+				Mesh->SetOwnerNoSee(Pair.Value);
+			}
+		}
+	}
+	State.Meshes.Empty();
+	for (auto& Pair : State.Owners)
+	{
+		AActor* PartActor = Pair.Key.Get();
+		AActor* OrigOwner = Pair.Value.Get();
+		if (IsValid(PartActor) && PartActor->GetOwner() == Pawn)
+		{
+			PartActor->SetOwner(OrigOwner);
+		}
+	}
+	State.Owners.Empty();
+}
 
 static void PruneScopeWidgetMap()
 {
@@ -58,6 +152,12 @@ void ULyraCameraMode_FirstPerson::UpdateView(float DeltaTime)
 	if (!TargetActor)
 	{
 		return;
+	}
+
+	if (FPHeadHideTarget != TargetActor)
+	{
+		RestoreFPHead();
+		FPHeadHideTarget = TargetActor;
 	}
 
 	FVector PivotLocation = FVector::ZeroVector;
@@ -106,6 +206,132 @@ void ULyraCameraMode_FirstPerson::UpdateView(float DeltaTime)
 	View.Rotation = PivotRotation;
 	View.ControlRotation = View.Rotation;
 	View.FieldOfView = FieldOfView;
+
+	if (ACharacter* FPCharacter = Cast<ACharacter>(TargetActor))
+	{
+		if (FPCharacter->IsLocallyControlled() && !IsTargetDeadOrDying(FPCharacter))
+		{
+			EnsureFPHeadHidden(FPCharacter);
+		}
+		else
+		{
+			RestoreFPHead();
+		}
+	}
+}
+
+void ULyraCameraMode_FirstPerson::OnDeactivation()
+{
+	RestoreFPHead();
+	FPHeadHideTarget = nullptr;
+}
+
+void ULyraCameraMode_FirstPerson::BeginDestroy()
+{
+	RestoreFPHead();
+	FPHeadHideTarget = nullptr;
+	Super::BeginDestroy();
+}
+
+void ULyraCameraMode_FirstPerson::EnsureFPHeadHidden(ACharacter* TargetCharacter)
+{
+	if (!TargetCharacter)
+	{
+		return;
+	}
+	FPHeadPrune();
+	if (bFPHeadAcquired && !GFPHeadStates.Contains(TargetCharacter))
+	{
+		bFPHeadAcquired = false;
+	}
+	if (bFPHeadAcquired)
+	{
+		return;
+	}
+	FFPHeadPawnState& State = GFPHeadStates.FindOrAdd(TargetCharacter);
+	if (State.RefCount == 0)
+	{
+		FPHeadApply(TargetCharacter, State);
+	}
+	State.RefCount++;
+	bFPHeadAcquired = true;
+}
+
+void ULyraCameraMode_FirstPerson::RestoreFPHead()
+{
+	if (!bFPHeadAcquired)
+	{
+		return;
+	}
+	bFPHeadAcquired = false;
+	FPHeadPrune();
+	AActor* Pawn = FPHeadHideTarget.Get();
+	if (!IsValid(Pawn))
+	{
+		return;
+	}
+	if (FFPHeadPawnState* State = GFPHeadStates.Find(Pawn))
+	{
+		if (--State->RefCount <= 0)
+		{
+			if (ACharacter* Char = Cast<ACharacter>(Pawn))
+			{
+				FPHeadUnapply(Char, *State);
+			}
+			GFPHeadStates.Remove(Pawn);
+		}
+	}
+}
+
+void ULyraCameraMode_FirstPerson::ForceRestoreFPHeadForPawn(AActor* Pawn)
+{
+	if (!IsValid(Pawn))
+	{
+		return;
+	}
+	FPHeadPrune();
+	GFPHeadStates.Remove(Pawn);
+	ACharacter* Char = Cast<ACharacter>(Pawn);
+	if (!Char)
+	{
+		return;
+	}
+	TArray<AActor*> AttachedActors;
+	Char->GetAttachedActors(AttachedActors, true, true);
+	for (AActor* PartActor : AttachedActors)
+	{
+		if (!IsValid(PartActor) || PartActor == Pawn)
+		{
+			continue;
+		}
+		bool bIsHeadGear = false;
+		if (const ALyraSoldierPartActor* SoldierPart = Cast<ALyraSoldierPartActor>(PartActor))
+		{
+			bIsHeadGear = (SoldierPart->PartSlot == ESoldierPartSlot::Head || SoldierPart->PartSlot == ESoldierPartSlot::Helmet);
+		}
+		if (!bIsHeadGear)
+		{
+			const FString ClassName = PartActor->GetClass()->GetName();
+			bIsHeadGear = ClassName.Contains(TEXT("Helmet")) || ClassName.Contains(TEXT("Head"));
+		}
+		if (!bIsHeadGear)
+		{
+			continue;
+		}
+		if (PartActor->GetOwner() == Pawn)
+		{
+			PartActor->SetOwner(nullptr);
+		}
+		TArray<UMeshComponent*> Meshes;
+		PartActor->GetComponents<UMeshComponent>(Meshes);
+		for (UMeshComponent* Mesh : Meshes)
+		{
+			if (IsValid(Mesh))
+			{
+				Mesh->SetOwnerNoSee(false);
+			}
+		}
+	}
 }
 
 void ULyraCameraMode_FirstPerson::PreventHeadPenetration(const AActor* TargetActor, const FVector& SafeLoc, FVector& CameraLoc) const

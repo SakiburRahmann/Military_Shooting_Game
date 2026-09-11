@@ -6,6 +6,7 @@
 #include "AbilitySystem/Attributes/LyraHealthSet.h"
 #include "AbilitySystem/LyraAbilitySet.h"
 #include "AbilitySystem/LyraAbilitySystemComponent.h"
+#include "Character/LyraHeroComponent.h"
 #include "Character/LyraPawnData.h"
 #include "Character/LyraPawnExtensionComponent.h"
 #include "Components/GameFrameworkComponentManager.h"
@@ -136,7 +137,9 @@ void ALyraPlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Out
 	SharedParams.Condition = ELifetimeCondition::COND_SkipOwner;
 	DOREPLIFETIME_WITH_PARAMS_FAST(ThisClass, ReplicatedViewRotation, SharedParams);
 
-	DOREPLIFETIME(ThisClass, StatTags);	
+	DOREPLIFETIME(ThisClass, StatTags);
+
+	DOREPLIFETIME(ThisClass, SoldierLoadout);
 }
 
 FRotator ALyraPlayerState::GetReplicatedViewRotation() const
@@ -151,6 +154,40 @@ void ALyraPlayerState::SetReplicatedViewRotation(const FRotator& NewRotation)
 	{
 		MARK_PROPERTY_DIRTY_FROM_NAME(ThisClass, ReplicatedViewRotation, this);
 		ReplicatedViewRotation = NewRotation;
+	}
+}
+
+void ALyraPlayerState::SetSoldierLoadoutDirect(const FLyraSoldierLoadout& NewLoadout)
+{
+	SoldierLoadout = NewLoadout;
+	MARK_PROPERTY_DIRTY_FROM_NAME(ThisClass, SoldierLoadout, this);
+}
+
+void ALyraPlayerState::ServerSetSoldierLoadout_Implementation(const FLyraSoldierLoadout& NewLoadout)
+{
+	SoldierLoadout = NewLoadout;
+	MARK_PROPERTY_DIRTY_FROM_NAME(ThisClass, SoldierLoadout, this);
+
+	// Re-apply to the live pawn so menu changes take effect without respawn.
+	if (APawn* ControlledPawn = GetPawn())
+	{
+		if (ULyraHeroComponent* HeroComp = ULyraHeroComponent::FindHeroComponent(ControlledPawn))
+		{
+			HeroComp->ApplySoldierLoadout();
+		}
+	}
+}
+
+void ALyraPlayerState::OnRep_SoldierLoadout()
+{
+	// Loadout may arrive after the part actors replicated and tinted with a
+	// stale color; refresh the tint on every instance.
+	if (const APawn* ControlledPawn = GetPawn())
+	{
+		if (ULyraHeroComponent* HeroComp = ULyraHeroComponent::FindHeroComponent(ControlledPawn))
+		{
+			HeroComp->RefreshSoldierUniformTint();
+		}
 	}
 }
 

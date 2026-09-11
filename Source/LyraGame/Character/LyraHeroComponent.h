@@ -18,6 +18,7 @@ class UGameFrameworkComponentManager;
 class UInputComponent;
 class ULyraCameraMode;
 class ULyraInputConfig;
+class ULyraPawnComponent_CharacterParts;
 class UObject;
 struct FActorInitStateChangedParams;
 struct FFrame;
@@ -50,6 +51,14 @@ public:
 	/** Toggle between first person and third person camera modes */
 	UFUNCTION(BlueprintCallable, Category = "Lyra|Hero")
 	UE_API void ToggleCameraMode();
+
+	/** (Re)applies the soldier loadout parts + uniform color to the current pawn */
+	UFUNCTION(BlueprintCallable, Category = "Lyra|Soldier")
+	UE_API void ApplySoldierLoadout();
+
+	/** Re-applies only the uniform tint (safe on clients; reads replicated loadout) */
+	UFUNCTION(BlueprintCallable, Category = "Lyra|Soldier")
+	UE_API void RefreshSoldierUniformTint();
 
 	/** Returns true if currently in first person mode */
 	UFUNCTION(BlueprintPure, Category = "Lyra|Hero")
@@ -95,6 +104,13 @@ protected:
 	UE_API void Input_Crouch(const FInputActionValue& InputActionValue);
 	UE_API void Input_AutoRun(const FInputActionValue& InputActionValue);
 	UE_API void Input_ToggleCamera(const FInputActionValue& InputActionValue);
+
+	UFUNCTION()
+	UE_API void HandleCharacterPartsChanged(ULyraPawnComponent_CharacterParts* ComponentWithChangedParts);
+
+	UE_API void RemoveStockBodyParts();
+
+	UE_API void ApplySoldierUniformColor() const;
 
 	UE_API TSubclassOf<ULyraCameraMode> DetermineCameraMode() const;
 

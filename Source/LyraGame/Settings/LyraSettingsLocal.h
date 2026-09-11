@@ -4,7 +4,7 @@
 
 #include "GameFramework/GameUserSettings.h"
 #include "InputCoreTypes.h"
-
+#include "Cosmetics/LyraSoldierLoadout.h"
 #include "LyraSettingsLocal.generated.h"
 
 enum class ECommonInputType : uint8;
@@ -446,7 +446,40 @@ public:
 	UFUNCTION()
 	void SetNumberOfReplaysToKeep(int32 InNumberOfReplays) { NumberOfReplaysToKeep = InNumberOfReplays; }
 
+	UFUNCTION(BlueprintCallable, Category = "Soldier")
+	FLyraSoldierLoadout GetSoldierLoadout() const { return SoldierLoadout; }
+	UFUNCTION(BlueprintCallable, Category = "Soldier")
+	void SetSoldierLoadout(const FLyraSoldierLoadout& InLoadout) { SoldierLoadout = InLoadout; }
+
+	UFUNCTION(Category = "Soldier")
+	FString GetSoldierHead() const;
+	UFUNCTION(Category = "Soldier")
+	void SetSoldierHead(const FString& Value);
+	UFUNCTION(Category = "Soldier")
+	FString GetSoldierChest() const;
+	UFUNCTION(Category = "Soldier")
+	void SetSoldierChest(const FString& Value);
+	UFUNCTION(Category = "Soldier")
+	FString GetSoldierHands() const;
+	UFUNCTION(Category = "Soldier")
+	void SetSoldierHands(const FString& Value);
+	UFUNCTION(Category = "Soldier")
+	FString GetSoldierLegs() const;
+	UFUNCTION(Category = "Soldier")
+	void SetSoldierLegs(const FString& Value);
+	UFUNCTION(Category = "Soldier")
+	FString GetSoldierHelmet() const;
+	UFUNCTION(Category = "Soldier")
+	void SetSoldierHelmet(const FString& Value);
+	UFUNCTION(Category = "Soldier")
+	FString GetSoldierUniform() const;
+	UFUNCTION(Category = "Soldier")
+	void SetSoldierUniform(const FString& Value);
+
 private:
+
+	UPROPERTY(Config)
+	FLyraSoldierLoadout SoldierLoadout;
 
 	UPROPERTY(Config)
 	bool bShouldAutoRecordReplays = false;

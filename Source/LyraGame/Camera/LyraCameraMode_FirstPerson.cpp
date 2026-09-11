@@ -39,27 +39,26 @@ static void FPHeadPrune()
 	}
 }
 
+static bool IsHeadGearActor(AActor* PartActor)
+{
+	if (const ALyraSoldierPartActor* SoldierPart = Cast<ALyraSoldierPartActor>(PartActor))
+	{
+		if (SoldierPart->PartSlot == ESoldierPartSlot::Head || SoldierPart->PartSlot == ESoldierPartSlot::Helmet)
+		{
+			return true;
+		}
+	}
+	const FString ClassName = PartActor->GetClass()->GetName();
+	return ClassName.Contains(TEXT("Helmet")) || ClassName.Contains(TEXT("Head"));
+}
+
 static void FPHeadApply(ACharacter* Pawn, FFPHeadPawnState& State)
 {
 	TArray<AActor*> AttachedActors;
 	Pawn->GetAttachedActors(AttachedActors, true, true);
 	for (AActor* PartActor : AttachedActors)
 	{
-		if (!PartActor || PartActor == Pawn)
-		{
-			continue;
-		}
-		bool bIsHeadGear = false;
-		if (const ALyraSoldierPartActor* SoldierPart = Cast<ALyraSoldierPartActor>(PartActor))
-		{
-			bIsHeadGear = (SoldierPart->PartSlot == ESoldierPartSlot::Head || SoldierPart->PartSlot == ESoldierPartSlot::Helmet);
-		}
-		if (!bIsHeadGear)
-		{
-			const FString ClassName = PartActor->GetClass()->GetName();
-			bIsHeadGear = ClassName.Contains(TEXT("Helmet")) || ClassName.Contains(TEXT("Head"));
-		}
-		if (!bIsHeadGear)
+		if (!PartActor || PartActor == Pawn || !IsHeadGearActor(PartActor))
 		{
 			continue;
 		}
@@ -300,21 +299,7 @@ void ULyraCameraMode_FirstPerson::ForceRestoreFPHeadForPawn(AActor* Pawn)
 	Char->GetAttachedActors(AttachedActors, true, true);
 	for (AActor* PartActor : AttachedActors)
 	{
-		if (!IsValid(PartActor) || PartActor == Pawn)
-		{
-			continue;
-		}
-		bool bIsHeadGear = false;
-		if (const ALyraSoldierPartActor* SoldierPart = Cast<ALyraSoldierPartActor>(PartActor))
-		{
-			bIsHeadGear = (SoldierPart->PartSlot == ESoldierPartSlot::Head || SoldierPart->PartSlot == ESoldierPartSlot::Helmet);
-		}
-		if (!bIsHeadGear)
-		{
-			const FString ClassName = PartActor->GetClass()->GetName();
-			bIsHeadGear = ClassName.Contains(TEXT("Helmet")) || ClassName.Contains(TEXT("Head"));
-		}
-		if (!bIsHeadGear)
+		if (!IsValid(PartActor) || PartActor == Pawn || !IsHeadGearActor(PartActor))
 		{
 			continue;
 		}
@@ -429,12 +414,13 @@ void ULyraCameraMode_FirstPersonADS::UpdateView(float DeltaTime)
 	ULyraCameraMode_FirstPerson::UpdateView(DeltaTime);
 	View.FieldOfView = FieldOfView;
 
-	if (bMeshesHidden)
+	if (!bMeshesHidden)
 	{
-		if (ACharacter* TargetCharacter = Cast<ACharacter>(TargetActor))
-		{
-			HideNewPawnMeshes(TargetCharacter);
-		}
+		SetADSFirstPersonMeshesHidden(true);
+	}
+	else if (ACharacter* TargetCharacter = Cast<ACharacter>(TargetActor))
+	{
+		HideNewPawnMeshes(TargetCharacter);
 	}
 }
 
@@ -460,7 +446,7 @@ void ULyraCameraMode_FirstPersonADS::HideNewPawnMeshes(ACharacter* TargetCharact
 	TargetCharacter->GetAttachedActors(AttachedActors, true, true);
 	for (AActor* Attached : AttachedActors)
 	{
-		if (!Attached)
+		if (!Attached || IsHeadGearActor(Attached))
 		{
 			continue;
 		}
@@ -503,6 +489,7 @@ void ULyraCameraMode_FirstPersonADS::OnDeactivation()
 {
 	SetADSCrosshairVisible(false);
 	SetADSFirstPersonMeshesHidden(false);
+	RestoreFPHead();
 }
 
 void ULyraCameraMode_FirstPersonADS::BeginDestroy()
@@ -595,7 +582,7 @@ void ULyraCameraMode_FirstPersonADS::SetADSFirstPersonMeshesHidden(bool bHidden)
 	TargetCharacter->GetAttachedActors(AttachedActors, true, true);
 	for (AActor* Attached : AttachedActors)
 	{
-		if (!Attached)
+		if (!Attached || IsHeadGearActor(Attached))
 		{
 			continue;
 		}

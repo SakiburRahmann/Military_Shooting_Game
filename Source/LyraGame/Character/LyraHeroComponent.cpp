@@ -25,6 +25,8 @@
 #include "Cosmetics/LyraPawnComponent_CharacterParts.h"
 #include "Cosmetics/LyraSoldierLoadout.h"
 #include "Cosmetics/LyraSoldierPartActor.h"
+#include "Teams/LyraTeamSubsystem.h"
+#include "GameFramework/PlayerState.h"
 #include "Settings/LyraSettingsLocal.h"
 #include "GameplayTagContainer.h"
 #include "UserSettings/EnhancedInputUserSettings.h"
@@ -721,15 +723,52 @@ void ULyraHeroComponent::ApplySoldierLoadout()
 	}
 	else
 	{
-		// Bots (and enemies/friendlies) get randomized gear for variety.
-		Loadout.HeadVariant = FMath::RandRange(0, 3);
-		Loadout.ChestVariant = FMath::RandRange(1, 3);
-		Loadout.HandVariant = FMath::RandRange(1, 3);
-		Loadout.LegVariant = FMath::RandRange(1, 3);
-		Loadout.FootVariant = 1;
-		Loadout.HelmetVariant = FMath::RandRange(0, 3);
-		Loadout.UniformColorIndex = FMath::RandRange(0, 5);
-		// Mirror the random look to the bot's PlayerState so simulated
+		// Standard-issue look, team-aware: every soldier wears one full set
+		// per side (no randomization, no mixed packs). Friendlies wear the
+		// green set; enemies wear a visually distinct one so the sides read
+		// at a glance.
+		Loadout = FLyraSoldierLoadout::MakeDefault();
+
+		int32 HumanTeamId = 0;
+		int32 BotTeamId = 0;
+		if (UWorld* World = Pawn->GetWorld())
+		{
+			if (const ULyraTeamSubsystem* TeamSubsystem = World->GetSubsystem<ULyraTeamSubsystem>())
+			{
+				BotTeamId = TeamSubsystem->FindTeamFromObject(LyraPS ? Cast<UObject>(LyraPS) : Cast<UObject>(Pawn));
+				for (FConstPlayerControllerIterator It = World->GetPlayerControllerIterator(); It; ++It)
+				{
+					const APlayerController* PC = It->Get();
+					const APlayerState* HumanPS = PC ? PC->PlayerState : nullptr;
+					if (HumanPS && !HumanPS->IsABot())
+					{
+						const int32 FoundTeamId = TeamSubsystem->FindTeamFromObject(HumanPS);
+						if (FoundTeamId != 0)
+						{
+							HumanTeamId = FoundTeamId;
+							break;
+						}
+					}
+				}
+			}
+		}
+
+		// Same team as the human (or unknown team while lookups are still
+		// incomplete) wears the standard green; other teams wear black.
+		const bool bFriendlySide = (BotTeamId != 0 && HumanTeamId != 0)
+			? (BotTeamId == HumanTeamId)
+			: (BotTeamId != 2);
+		if (!bFriendlySide)
+		{
+			// Black ops set: identical silhouette, distinct color.
+			Loadout.ChestVariant = 3;
+			Loadout.HandVariant = 3;
+			Loadout.LegVariant = 3;
+			Loadout.HelmetVariant = 3;
+			Loadout.UniformColorIndex = 2;
+		}
+
+		// Mirror the standard look to the bot's PlayerState so simulated
 		// instances tint the same uniform color.
 		if (LyraPS)
 		{
